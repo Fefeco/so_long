@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 09:52:26 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/03/29 11:37:04 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/03/29 12:05:51 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,13 +58,44 @@ int	mouse_click(int button)
 
 
 
+
+
+
+///////////////////////////////
+// Funciones para renderizar //
+///////////////////////////////
+
+int	ft_render(win_t *game)
+{
+
+	mlx_clear_window(game->connection, game->window);
+	mlx_put_image_to_window(game->connection, game->window, game->player.render, 
+			game->player.pos_x, game->player.pos_y);
+
+	mlx_string_put(game->connection, 
+			game->window, 
+			WIDTH * 0.4, 
+			HEIGHT * 0.9 , 
+			0xFF99FF, 
+			"GAME ON!");
+	return (0);
+}
+
+///////////////////////////////
+// Funciones para renderizar //
+///////////////////////////////
+
+
+
+
+
+
 ///////////////////////////
 // Funciones mmovimiento //
 ///////////////////////////
 
 int	ft_movement(win_t *game, int key)
 {
-//	mlx_clear_window(game.connection, game.window);
 	if (key == UP)
 	{
 		game->player.pos_y -= 20;
@@ -85,10 +116,7 @@ int	ft_movement(win_t *game, int key)
 		game->player.pos_x -= 20;
 		game->player.render = game->player.left;
 	}
-
-	mlx_put_image_to_window(game->connection, game->window, game->player.render, 
-			game->player.pos_x, game->player.pos_y);
-	mlx_do_sync(game->connection);
+	ft_render(game);
 	return (0);
 }
 
@@ -138,14 +166,9 @@ int main(void)
 	game.player.pos_x = 25;
 	game.player.pos_y = 30;
 	game.player.render = game.player.right;
-	mlx_put_image_to_window(game.connection, game.window, game.player.render, 
-			game.player.pos_x, game.player.pos_y);
-	mlx_string_put(game.connection, 
-			game.window, 
-			WIDTH * 0.4, 
-			HEIGHT * 0.9 , 
-			0xFF99FF, 
-			"GAME ON!");
+	ft_render(&game);
+//	mlx_put_image_to_window(game.connection, game.window, game.player.render, 
+//			game.player.pos_x, game.player.pos_y);
 
 	mlx_hook(game.window, 2, 1L << 0, key_press, &game);
 //	mlx_hook(game.window, 6, 1L << 6, mouse_move, NULL);
