@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 09:52:26 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/03/29 12:05:51 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/03/29 13:27:41 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 #include "so_long.h"
 
 
-///////////////////////////////
+//////////////////////////////
 // Funciones para los Hooks //
-///////////////////////////////
+//////////////////////////////
 int	exit_program(win_t *game)
 {
 	if (game)
@@ -52,15 +52,16 @@ int	mouse_click(int button)
 	printf("Mouse click %d\n", button);
 	return (0);
 }
-///////////////////////////////
-// Fin Funciones para los Hooks
-///////////////////////////////
-
-
-
-
-
-
+//////////////////////////////////
+// Fin Funciones para los Hooks //
+//////////////////////////////////
+//
+//
+//
+//
+//
+//
+//
 ///////////////////////////////
 // Funciones para renderizar //
 ///////////////////////////////
@@ -69,6 +70,7 @@ int	ft_render(win_t *game)
 {
 
 	mlx_clear_window(game->connection, game->window);
+	mlx_put_image_to_window(game->connection, game->window, game->background.floor, 0, 0);
 	mlx_put_image_to_window(game->connection, game->window, game->player.render, 
 			game->player.pos_x, game->player.pos_y);
 
@@ -81,15 +83,15 @@ int	ft_render(win_t *game)
 	return (0);
 }
 
-///////////////////////////////
-// Funciones para renderizar //
-///////////////////////////////
-
-
-
-
-
-
+///////////////////////////////////
+// FIN Funciones para renderizar //
+///////////////////////////////////
+//
+//
+//
+//
+//
+//
 ///////////////////////////
 // Funciones mmovimiento //
 ///////////////////////////
@@ -120,32 +122,30 @@ int	ft_movement(win_t *game, int key)
 	return (0);
 }
 
-
-///////////////////////////
-// Funciones mmovimiento //
-///////////////////////////
+///////////////////////////////
+// FIN Funciones mmovimiento //
+///////////////////////////////
 
 
 
 int main(void)
 {
 	win_t	game;
-	void	*texture;
 
 	game = ft_create_window(WIDTH, HEIGHT, "My Juego");
 	if (!game.connection || !game.window)
 		return (1);
 	
-	
-	texture = mlx_xpm_file_to_image(game.connection, 
+	game.background.floor = mlx_xpm_file_to_image(game.connection, 
 			"img/textura.xpm", 
-			&game.width, 
-			&game.height);
+			&(game.background.width), 
+			&(game.background.height));
+
 	game.player.right = mlx_xpm_file_to_image(game.connection, 
 			"img/player_right.xpm", 
 			&game.width, 
 			&game.height);
-	
+
 	game.player.up = mlx_xpm_file_to_image(game.connection, 
 			"img/player_up.xpm", 
 			&game.width, 
@@ -161,7 +161,6 @@ int main(void)
 			&game.width, 
 			&game.height);
 	
-	mlx_put_image_to_window(game.connection, game.window, texture, 0, 0);
 
 	game.player.pos_x = 25;
 	game.player.pos_y = 30;

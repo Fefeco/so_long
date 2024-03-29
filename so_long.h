@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 14:02:33 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/03/29 11:11:59 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/03/29 13:26:58 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,18 +40,24 @@ typedef struct img_s {
 	int		pos_y;
 } img_t;
 
+typedef struct back_s {
+	void	*wall;
+	void	*coin;
+	void	*floor;
+	void	*exit;
+	int		width;
+	int		height;
+} back_t;
 
 typedef	struct win_s {
 	void	*connection;
 	void	*window;
 	int		width;
 	int		height;
+	int		coins;
 	img_t	player;
+	back_t	background;
 } win_t;
-
-
-
-
 
 #endif
 

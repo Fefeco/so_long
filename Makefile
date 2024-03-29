@@ -6,7 +6,7 @@
 #    By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/26 09:57:02 by fcarranz          #+#    #+#              #
-#    Updated: 2024/03/28 14:01:23 by fcarranz         ###   ########.fr        #
+#    Updated: 2024/03/29 13:18:40 by fcarranz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ CFLAGS=-Wall -Werror -Wextra
 NAME=so_long
 MLX_PATH=mlx/
 SRC=so_long.c \
-	utils.c
+	utils.c 
 OBJS=$(SRC:%.c=%.o)
 INC=mlx
 
