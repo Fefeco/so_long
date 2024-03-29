@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 09:52:26 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/03/29 11:17:04 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/03/29 11:37:04 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,6 +137,7 @@ int main(void)
 
 	game.player.pos_x = 25;
 	game.player.pos_y = 30;
+	game.player.render = game.player.right;
 	mlx_put_image_to_window(game.connection, game.window, game.player.render, 
 			game.player.pos_x, game.player.pos_y);
 	mlx_string_put(game.connection, 
