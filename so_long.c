@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 09:52:26 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/03/29 10:33:11 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/03/29 11:17:04 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,12 @@ int	key_press(int key, win_t *game)
 {
 	if (key == 53)
 		exit_program(game);
-	else if (key == 124)
+	else if (key >= 123 && key <= 126)
 	{
-		game->player.pos_x += 20;
 		printf("Brujo en posicion \nx = %d\ny = %d\n", 
 				game->player.pos_x, 
 				game->player.pos_y);
-		ft_movement(*game);
+		ft_movement(game, key);
 	}
 	else
 		printf("Tecla %d presionada\n", key);
@@ -63,10 +62,33 @@ int	mouse_click(int button)
 // Funciones mmovimiento //
 ///////////////////////////
 
-int	ft_movement(win_t game)
+int	ft_movement(win_t *game, int key)
 {
-	mlx_put_image_to_window(game.connection, game.window, game.player.render, 
-			game.player.pos_x, game.player.pos_y);
+//	mlx_clear_window(game.connection, game.window);
+	if (key == UP)
+	{
+		game->player.pos_y -= 20;
+		game->player.render = game->player.up;
+	}
+	else if (key == DOWN)
+	{
+		game->player.pos_y += 20;
+		game->player.render = game->player.down;
+	}
+	else if (key == RIGHT)
+	{
+		game->player.pos_x += 20;
+		game->player.render = game->player.right;
+	}
+	else if (key == LEFT)
+	{
+		game->player.pos_x -= 20;
+		game->player.render = game->player.left;
+	}
+
+	mlx_put_image_to_window(game->connection, game->window, game->player.render, 
+			game->player.pos_x, game->player.pos_y);
+	mlx_do_sync(game->connection);
 	return (0);
 }
 
@@ -91,14 +113,29 @@ int main(void)
 			"img/textura.xpm", 
 			&game.width, 
 			&game.height);
-	game.player.render = mlx_xpm_file_to_image(game.connection, 
-			"img/player.xpm", 
+	game.player.right = mlx_xpm_file_to_image(game.connection, 
+			"img/player_right.xpm", 
+			&game.width, 
+			&game.height);
+	
+	game.player.up = mlx_xpm_file_to_image(game.connection, 
+			"img/player_up.xpm", 
+			&game.width, 
+			&game.height);
+	
+	game.player.left = mlx_xpm_file_to_image(game.connection, 
+			"img/player_left.xpm", 
+			&game.width, 
+			&game.height);
+	
+	game.player.down = mlx_xpm_file_to_image(game.connection, 
+			"img/player_down.xpm", 
 			&game.width, 
 			&game.height);
 	
 	mlx_put_image_to_window(game.connection, game.window, texture, 0, 0);
 
-	game.player.pos_x = 75;
+	game.player.pos_x = 25;
 	game.player.pos_y = 30;
 	mlx_put_image_to_window(game.connection, game.window, game.player.render, 
 			game.player.pos_x, game.player.pos_y);

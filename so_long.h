@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 14:02:33 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/03/29 10:31:40 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/03/29 11:11:59 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,16 @@
 # define SO_LONG_H
 
 # define ESC 53
+# define UP 126
+# define DOWN 125
+# define LEFT 123
+# define RIGHT 124
 
 typedef struct img_s {
+	void	*up;
+	void	*down;
+	void	*left;
+	void	*right;
 	void	*render;
 	int		pos_x;
 	int		pos_y;
@@ -48,5 +56,5 @@ typedef	struct win_s {
 #endif
 
 win_t	ft_create_window(int width, int height, char *str);
-int		ft_movement(win_t game);
+int		ft_movement(win_t *game, int key);
 
