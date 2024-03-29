@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 14:02:33 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/03/28 21:12:49 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/03/29 10:31:40 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,27 @@
 
 # define ESC 53
 
+typedef struct img_s {
+	void	*render;
+	int		pos_x;
+	int		pos_y;
+} img_t;
+
+
 typedef	struct win_s {
 	void	*connection;
 	void	*window;
 	int		width;
 	int		height;
-	int		box_x;
-	int		box_y;
+	img_t	player;
 } win_t;
+
+
+
+
+
 #endif
 
 win_t	ft_create_window(int width, int height, char *str);
+int		ft_movement(win_t game);
 

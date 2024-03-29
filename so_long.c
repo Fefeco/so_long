@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 09:52:26 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/03/28 21:23:11 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/03/29 10:33:11 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,11 @@ int	key_press(int key, win_t *game)
 		exit_program(game);
 	else if (key == 124)
 	{
-		game->box_x += 20;
-		printf("Brujo en posicion \nx = %d\ny = %d\n", game->box_x, game->box_y);
+		game->player.pos_x += 20;
+		printf("Brujo en posicion \nx = %d\ny = %d\n", 
+				game->player.pos_x, 
+				game->player.pos_y);
+		ft_movement(*game);
 	}
 	else
 		printf("Tecla %d presionada\n", key);
@@ -55,10 +58,28 @@ int	mouse_click(int button)
 ///////////////////////////////
 
 
+
+///////////////////////////
+// Funciones mmovimiento //
+///////////////////////////
+
+int	ft_movement(win_t game)
+{
+	mlx_put_image_to_window(game.connection, game.window, game.player.render, 
+			game.player.pos_x, game.player.pos_y);
+	return (0);
+}
+
+
+///////////////////////////
+// Funciones mmovimiento //
+///////////////////////////
+
+
+
 int main(void)
 {
 	win_t	game;
-	void	*player;
 	void	*texture;
 
 	game = ft_create_window(WIDTH, HEIGHT, "My Juego");
@@ -70,17 +91,17 @@ int main(void)
 			"img/textura.xpm", 
 			&game.width, 
 			&game.height);
-	player = mlx_xpm_file_to_image(game.connection, 
+	game.player.render = mlx_xpm_file_to_image(game.connection, 
 			"img/player.xpm", 
 			&game.width, 
 			&game.height);
 	
 	mlx_put_image_to_window(game.connection, game.window, texture, 0, 0);
 
-	game.box_x = 25;
-	game.box_y = 30;
-	mlx_put_image_to_window(game.connection, game.window, player, 
-			game.box_x, game.box_y);
+	game.player.pos_x = 75;
+	game.player.pos_y = 30;
+	mlx_put_image_to_window(game.connection, game.window, game.player.render, 
+			game.player.pos_x, game.player.pos_y);
 	mlx_string_put(game.connection, 
 			game.window, 
 			WIDTH * 0.4, 
