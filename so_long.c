@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 09:52:26 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/03/29 13:27:41 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/03/29 13:54:58 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,38 @@ int	mouse_click(int button)
 ///////////////////////////////
 // Funciones para renderizar //
 ///////////////////////////////
+
+
+int	ft_load_textures(win_t *game)
+{
+
+	game->background.floor = mlx_xpm_file_to_image(game->connection, 
+			"img/textura.xpm", 
+			&(game->width), 
+			&(game->height));
+
+	game->player.right = mlx_xpm_file_to_image(game->connection, 
+			"img/player_right.xpm", 
+			&(game->width), 
+			&(game->height));
+
+	game->player.up = mlx_xpm_file_to_image(game->connection, 
+			"img/player_up.xpm", 
+			&(game->width), 
+			&(game->height));
+	
+	game->player.left = mlx_xpm_file_to_image(game->connection, 
+			"img/player_left.xpm", 
+			&(game->width), 
+			&(game->height));
+	
+	game->player.down = mlx_xpm_file_to_image(game->connection, 
+			"img/player_down.xpm", 
+			&(game->width), 
+			&(game->height));
+	return (0);
+}
+
 
 int	ft_render(win_t *game)
 {
@@ -136,31 +168,7 @@ int main(void)
 	if (!game.connection || !game.window)
 		return (1);
 	
-	game.background.floor = mlx_xpm_file_to_image(game.connection, 
-			"img/textura.xpm", 
-			&(game.background.width), 
-			&(game.background.height));
-
-	game.player.right = mlx_xpm_file_to_image(game.connection, 
-			"img/player_right.xpm", 
-			&game.width, 
-			&game.height);
-
-	game.player.up = mlx_xpm_file_to_image(game.connection, 
-			"img/player_up.xpm", 
-			&game.width, 
-			&game.height);
-	
-	game.player.left = mlx_xpm_file_to_image(game.connection, 
-			"img/player_left.xpm", 
-			&game.width, 
-			&game.height);
-	
-	game.player.down = mlx_xpm_file_to_image(game.connection, 
-			"img/player_down.xpm", 
-			&game.width, 
-			&game.height);
-	
+	ft_load_textures(&game);
 
 	game.player.pos_x = 25;
 	game.player.pos_y = 30;

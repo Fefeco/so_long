@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 14:02:33 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/03/29 13:26:58 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/03/29 13:53:14 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,5 @@ typedef	struct win_s {
 
 win_t	ft_create_window(int width, int height, char *str);
 int		ft_movement(win_t *game, int key);
+int		ft_load_textures(win_t *game);
 
