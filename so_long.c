@@ -6,11 +6,10 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 09:52:26 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/03/29 13:54:58 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/03/30 10:44:46 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "so_long.h"
 
 
@@ -67,9 +66,9 @@ int	mouse_click(int button)
 ///////////////////////////////
 
 
-int	ft_load_textures(win_t *game)
+int	ft_load_textures(win_t *game, char *map)
 {
-
+	game->map = map;
 	game->background.floor = mlx_xpm_file_to_image(game->connection, 
 			"img/textura.xpm", 
 			&(game->width), 
@@ -100,8 +99,8 @@ int	ft_load_textures(win_t *game)
 
 int	ft_render(win_t *game)
 {
-
 	mlx_clear_window(game->connection, game->window);
+	ft_render_map(game);
 	mlx_put_image_to_window(game->connection, game->window, game->background.floor, 0, 0);
 	mlx_put_image_to_window(game->connection, game->window, game->player.render, 
 			game->player.pos_x, game->player.pos_y);
@@ -115,6 +114,25 @@ int	ft_render(win_t *game)
 	return (0);
 }
 
+int	ft_render_map(win_t *game)
+{
+	int		fd;
+	char	*line;
+
+	fd = open(game->map, O_RDONLY);
+	if (fd < 0)
+		return (1);
+	while (1)
+	{
+		line = get_next_line(fd);
+		if (line == NULL)
+			break;
+		ft_render_map_line(line);
+		free (line);
+	}
+	close(fd);
+	return (0);
+}
 ///////////////////////////////////
 // FIN Funciones para renderizar //
 ///////////////////////////////////
@@ -158,17 +176,26 @@ int	ft_movement(win_t *game, int key)
 // FIN Funciones mmovimiento //
 ///////////////////////////////
 
+int	ft_check_error(int argc)
+{
+	if (argc == 1)
+		ft_printf("%s", ERROR_NO_MAP);
+	if (argc > 2)
+		ft_printf("%s", ERROR_TO_MANY_ARGS);
+	return (1);
+}
 
-
-int main(void)
+int main(int argc, char *argv[])
 {
 	win_t	game;
 
+	if (argc == 1 || argc >2)
+		return (ft_check_error(argc));
 	game = ft_create_window(WIDTH, HEIGHT, "My Juego");
 	if (!game.connection || !game.window)
 		return (1);
 	
-	ft_load_textures(&game);
+	ft_load_textures(&game, argv[1]);
 
 	game.player.pos_x = 25;
 	game.player.pos_y = 30;

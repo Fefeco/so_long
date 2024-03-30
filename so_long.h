@@ -6,12 +6,13 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 14:02:33 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/03/29 13:53:14 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/03/30 10:59:53 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 #ifndef WIDTH
 # define WIDTH 600
@@ -29,6 +30,9 @@
 # define DOWN 125
 # define LEFT 123
 # define RIGHT 124
+
+# define ERROR_NO_MAP "Debe especificar un archivo de mapa."
+# define ERROR_TO_MANY_ARGS "Demasiados argumentos."
 
 typedef struct img_s {
 	void	*up;
@@ -52,6 +56,7 @@ typedef struct back_s {
 typedef	struct win_s {
 	void	*connection;
 	void	*window;
+	char	*map;
 	int		width;
 	int		height;
 	int		coins;
@@ -63,5 +68,7 @@ typedef	struct win_s {
 
 win_t	ft_create_window(int width, int height, char *str);
 int		ft_movement(win_t *game, int key);
-int		ft_load_textures(win_t *game);
-
+int		ft_load_textures(win_t *gamei, char *map);
+int		ft_check_error(int argc);
+int		ft_render_map(win_t *game);
+int		ft_render_map_line(char *line);
