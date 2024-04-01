@@ -6,11 +6,14 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 14:02:33 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/03/30 10:59:53 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/04/01 12:30:42 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx.h"
+#include "libft.h"
+#include "ft_printf.h"
+#include "get_next_line.h"
 #include <stdlib.h>
 #include <stdio.h>
 
@@ -71,4 +74,4 @@ int		ft_movement(win_t *game, int key);
 int		ft_load_textures(win_t *gamei, char *map);
 int		ft_check_error(int argc);
 int		ft_render_map(win_t *game);
-int		ft_render_map_line(char *line);
+//int		ft_render_map_line(char *line);

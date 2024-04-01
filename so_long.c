@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 09:52:26 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/03/30 10:44:46 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/04/01 12:31:08 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ int	mouse_click(int button)
 // Funciones para renderizar //
 ///////////////////////////////
 
-
 int	ft_load_textures(win_t *game, char *map)
 {
 	game->map = map;
@@ -95,7 +94,6 @@ int	ft_load_textures(win_t *game, char *map)
 			&(game->height));
 	return (0);
 }
-
 
 int	ft_render(win_t *game)
 {
@@ -127,12 +125,17 @@ int	ft_render_map(win_t *game)
 		line = get_next_line(fd);
 		if (line == NULL)
 			break;
-		ft_render_map_line(line);
+		//ft_render_map_line(line);
 		free (line);
 	}
 	close(fd);
 	return (0);
 }
+
+//int	ft_render_map_line(char *line)
+//{
+//
+//}
 ///////////////////////////////////
 // FIN Funciones para renderizar //
 ///////////////////////////////////

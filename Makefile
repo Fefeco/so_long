@@ -6,14 +6,17 @@
 #    By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/26 09:57:02 by fcarranz          #+#    #+#              #
-#    Updated: 2024/03/29 13:18:40 by fcarranz         ###   ########.fr        #
+#    Updated: 2024/04/01 12:21:45 by fcarranz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+NAME=so_long
 CC=gcc
 CFLAGS=-Wall -Werror -Wextra
-NAME=so_long
+
 MLX_PATH=mlx/
+LIBFT_PATH=libft/
+LIBFT=-Llibft -l ftprintf
 SRC=so_long.c \
 	utils.c 
 OBJS=$(SRC:%.c=%.o)
@@ -28,17 +31,20 @@ X11_FLAGS=-L/usr/X11/lib -lXext -lX11
 all: $(NAME)
 
 $(NAME): $(OBJS)
+	make -C $(LIBFT_PATH) 
 	make -C $(MLX_PATH)
-	$(CC) $(CFLAGS) $(OBJS) $(MLX_FLAGS) -I$(INC) -o $@
+	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(MLX_FLAGS) -I$(INC) -o $@
 
 %.o: %.c
-	$(CC) $(CFLAGS) -Imlx -c $< -o $@
+	$(CC) $(CFLAGS) -Imlx -I libft/inc -c $< -o $@
 
 clean:
+	make clean -C $(LIBFT_PATH)
 	make clean -C $(MLX_PATH)
 	rm -f $(OBJS)
 
 fclean: clean
+	make fclean -C $(LIBFT_PATH)
 	rm -f $(NAME)
 
 re: fclean all
