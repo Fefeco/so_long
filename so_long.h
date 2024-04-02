@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 14:02:33 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/04/02 11:20:45 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/04/02 11:59:36 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "ft_printf.h"
 #include "get_next_line.h"
 #include <stdlib.h>
-#include <stdio.h>
+//#include <stdio.h>
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
@@ -28,10 +28,11 @@
 # define WIDTH 600
 # define HEIGHT 400
 
+# define EXTENSION ".ber"
 # define ERROR_NO_MAP "Debe especificar un archivo de mapa."
 # define ERROR_TO_MANY_ARGS "Demasiados argumentos."
-# define EXTENSION ".ber"
 # define ERROR_EXTENSION "**ERROR de archivo de mapa. Debe ser extension *.ber"
+# define ERROR_MAP "**ERROR de mapa"
 
 typedef struct s_img
 {

@@ -6,12 +6,11 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 09:52:26 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/04/02 11:26:05 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/04/02 12:02:25 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
 
 //////////////////////////////
 // Funciones para los Hooks //
@@ -66,11 +65,8 @@ int	mouse_click(int button)
 
 int	ft_load_textures(t_win *game, char *map)
 {
-	if (ft_check_extension(NULL, EXTENSION))
-	{
-		ft_printf("%s\n", ERROR_EXTENSION);
+	if (ft_check_extension(map, EXTENSION))
 		exit_program(game);
-	}
 	game->map = map;
 	game->background.floor = mlx_xpm_file_to_image(game->connection, 
 			"img/textura.xpm", 
@@ -193,19 +189,6 @@ int	ft_movement(t_win *game, int key)
 /////// Funciones UTILS ///////
 ///////////////////////////////
 
-int	ft_check_extension(const char *filename, const char *ext)
-{
-	int	len_ext;
-	int	len_fname;
-
-	if (!filename || !ext)
-		return (1);
-	len_ext = ft_strlen(ext);
-	len_fname = ft_strlen(filename);
-	if (ft_strncmp(filename + (len_fname - len_ext), ext, len_ext))
-		return (1);
-	return (0);
-}
 
 ///////////////////////////////
 ///// FIN Funciones UTILS /////
@@ -214,9 +197,9 @@ int	ft_check_extension(const char *filename, const char *ext)
 int	ft_check_error(int argc)
 {
 	if (argc == 1)
-		ft_printf("%s", ERROR_NO_MAP);
+		ft_printf("%s\n", ERROR_NO_MAP);
 	if (argc > 2)
-		ft_printf("%s", ERROR_TO_MANY_ARGS);
+		ft_printf("%s\n", ERROR_TO_MANY_ARGS);
 	return (1);
 }
 
