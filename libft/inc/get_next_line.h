@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 10:51:53 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/03/30 11:06:02 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/04/02 10:43:39 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,14 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include <unistd.h>
+# include "libft.h"
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 42
 # endif
 
 char	*get_next_line(int fd);
-size_t	ft_strlen(const char *s);
+//size_t	ft_strlen(const char *s);
 char	*ft_strdup(const char *s);
 char	*ft_strjoin(char *s1, char *s2);
 char	*ft_strchr(const char *s, int c);

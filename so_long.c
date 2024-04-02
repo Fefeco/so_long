@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 09:52:26 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/04/01 12:31:08 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/04/02 11:26:05 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,14 @@
 //////////////////////////////
 // Funciones para los Hooks //
 //////////////////////////////
-int	exit_program(win_t *game)
+int	exit_program(t_win *game)
 {
 	if (game)
 		mlx_destroy_window(game->connection, game->window);
-	printf("Cerro!");
 	exit(EXIT_FAILURE);
 }
 
-int	key_press(int key, win_t *game)
+int	key_press(int key, t_win *game)
 {
 	if (key == 53)
 		exit_program(game);
@@ -65,8 +64,13 @@ int	mouse_click(int button)
 // Funciones para renderizar //
 ///////////////////////////////
 
-int	ft_load_textures(win_t *game, char *map)
+int	ft_load_textures(t_win *game, char *map)
 {
+	if (ft_check_extension(NULL, EXTENSION))
+	{
+		ft_printf("%s\n", ERROR_EXTENSION);
+		exit_program(game);
+	}
 	game->map = map;
 	game->background.floor = mlx_xpm_file_to_image(game->connection, 
 			"img/textura.xpm", 
@@ -95,7 +99,7 @@ int	ft_load_textures(win_t *game, char *map)
 	return (0);
 }
 
-int	ft_render(win_t *game)
+int	ft_render(t_win *game)
 {
 	mlx_clear_window(game->connection, game->window);
 	ft_render_map(game);
@@ -112,7 +116,7 @@ int	ft_render(win_t *game)
 	return (0);
 }
 
-int	ft_render_map(win_t *game)
+int	ft_render_map(t_win *game)
 {
 	int		fd;
 	char	*line;
@@ -149,7 +153,7 @@ int	ft_render_map(win_t *game)
 // Funciones mmovimiento //
 ///////////////////////////
 
-int	ft_movement(win_t *game, int key)
+int	ft_movement(t_win *game, int key)
 {
 	if (key == UP)
 	{
@@ -178,6 +182,34 @@ int	ft_movement(win_t *game, int key)
 ///////////////////////////////
 // FIN Funciones mmovimiento //
 ///////////////////////////////
+//
+//
+//
+//
+//
+//
+//
+///////////////////////////////
+/////// Funciones UTILS ///////
+///////////////////////////////
+
+int	ft_check_extension(const char *filename, const char *ext)
+{
+	int	len_ext;
+	int	len_fname;
+
+	if (!filename || !ext)
+		return (1);
+	len_ext = ft_strlen(ext);
+	len_fname = ft_strlen(filename);
+	if (ft_strncmp(filename + (len_fname - len_ext), ext, len_ext))
+		return (1);
+	return (0);
+}
+
+///////////////////////////////
+///// FIN Funciones UTILS /////
+///////////////////////////////
 
 int	ft_check_error(int argc)
 {
@@ -190,7 +222,7 @@ int	ft_check_error(int argc)
 
 int main(int argc, char *argv[])
 {
-	win_t	game;
+	t_win	game;
 
 	if (argc == 1 || argc >2)
 		return (ft_check_error(argc));

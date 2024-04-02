@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 11:36:56 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/02/29 12:01:00 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/04/02 10:44:54 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ char	*ft_strdup(const char *s)
 	return (s_dup);
 }
 
-size_t	ft_strlen(const char *str)
+/*size_t	ft_strlen(const char *str)
 {
 	size_t	len;
 
@@ -45,7 +45,7 @@ size_t	ft_strlen(const char *str)
 			++len;
 	}
 	return (len);
-}
+}*/
 
 char	*ft_strjoin(char *s1, char *s2)
 {
