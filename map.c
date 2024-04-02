@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 11:29:34 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/04/02 13:24:35 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/04/02 13:40:41 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,11 @@ int		ft_check_map_size(char *map_file)
 		++y;
 		free (line);
 		line = get_next_line(fd);
+		if (line && (int)ft_strlen(line) != x + 1)
+		{
+			free (line);
+			return (0);
+		}
 	}
 	close (fd);
 	if (x <= y)
