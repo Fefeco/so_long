@@ -6,7 +6,7 @@
 #    By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/26 09:57:02 by fcarranz          #+#    #+#              #
-#    Updated: 2024/04/02 11:48:03 by fcarranz         ###   ########.fr        #
+#    Updated: 2024/04/02 12:33:31 by fcarranz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,8 @@ MLX_PATH=mlx/
 LIBFT_PATH=libft/
 LIBFT=-Llibft -l ftprintf
 SRC=so_long.c \
-	so_long_utils.c 
+	so_long_utils.c \
+	map.c
 OBJS=$(SRC:%.c=%.o)
 INC=mlx
 

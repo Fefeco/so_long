@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 14:02:33 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/04/02 11:59:36 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/04/02 13:24:42 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 # define ERROR_NO_MAP "Debe especificar un archivo de mapa."
 # define ERROR_TO_MANY_ARGS "Demasiados argumentos."
 # define ERROR_EXTENSION "**ERROR de archivo de mapa. Debe ser extension *.ber"
+# define ERROR_MAP_SIZE "**ERROR de mapa. El mapa no es rectangular"
 # define ERROR_MAP "**ERROR de mapa"
 
 typedef struct s_img
@@ -69,9 +70,11 @@ typedef struct s_win
 
 #endif
 
+int		exit_program(t_win *game);
 t_win	ft_create_window(int width, int height, char *str);
 int		ft_movement(t_win *game, int key);
-int		ft_load_textures(t_win *gamei, char *map);
+int		ft_load_textures(t_win *game);
+int		ft_load_map(t_win *game, char *map_file);
 int		ft_check_error(int argc);
 int		ft_render_map(t_win *game);
 int		ft_check_extension(const char *filename, const char *ext);

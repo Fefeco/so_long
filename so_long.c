@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 09:52:26 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/04/02 12:02:25 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/04/02 13:24:45 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,11 +63,8 @@ int	mouse_click(int button)
 // Funciones para renderizar //
 ///////////////////////////////
 
-int	ft_load_textures(t_win *game, char *map)
+int	ft_load_textures(t_win *game)
 {
-	if (ft_check_extension(map, EXTENSION))
-		exit_program(game);
-	game->map = map;
 	game->background.floor = mlx_xpm_file_to_image(game->connection, 
 			"img/textura.xpm", 
 			&(game->width), 
@@ -213,7 +210,8 @@ int main(int argc, char *argv[])
 	if (!game.connection || !game.window)
 		return (1);
 	
-	ft_load_textures(&game, argv[1]);
+	ft_load_map(&game, argv[1]);
+	ft_load_textures(&game);
 
 	game.player.pos_x = 25;
 	game.player.pos_y = 30;
