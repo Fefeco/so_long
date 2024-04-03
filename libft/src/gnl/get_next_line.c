@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 14:04:50 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/02/29 12:12:34 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/04/03 18:54:36 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,13 +70,13 @@ static char	*ft_read_file(char *buffer, int fd)
 	char	*read_buf;
 	int		bytes_read;
 
-	read_buf = (char *)malloc((sizeof(char) * BUFFER_SIZE) + 1);
-	if (!read_buf)
-		return (NULL);
-	ft_bzero(read_buf, BUFFER_SIZE + 1);
 	bytes_read = 1;
 	while (bytes_read > 0)
 	{
+		read_buf = (char *)malloc((sizeof(char) * BUFFER_SIZE) + 1);
+		if (!read_buf)
+			return (NULL);
+		ft_bzero(read_buf, BUFFER_SIZE + 1);
 		bytes_read = read(fd, read_buf, BUFFER_SIZE);
 		if (bytes_read == -1)
 		{
@@ -88,7 +88,6 @@ static char	*ft_read_file(char *buffer, int fd)
 		if (ft_strchr(buffer, '\n') || buffer == NULL)
 			break ;
 	}
-	free (read_buf);
 	return (buffer);
 }
 

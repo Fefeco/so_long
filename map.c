@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 11:29:34 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/04/03 13:43:04 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/04/03 18:49:35 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 int	ft_check_map_size(t_map *map)
 {
 	char	*line;
-	char	*prueba;
 
 	map->fd = open(map->filename, O_RDONLY);
 	if (map->fd < 0)
@@ -28,10 +27,8 @@ int	ft_check_map_size(t_map *map)
 	while (line)
 	{
 		++map->y;
-		prueba =ft_strtrim(line, "\n");
-		map->map_from_file = ft_strjoin(map->map_from_file, prueba);
+		map->map_from_file = ft_strjoin(map->map_from_file, ft_strtrim(line, "\n"));
 		free (line);
-		free (prueba);
 		line = get_next_line(map->fd);
 		if (line && (int)ft_strlen(line) != map->x + 1)
 			return (close(map->fd), free(line), 0);

@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 11:36:56 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/04/02 10:44:54 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/04/03 18:57:14 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,19 +34,6 @@ char	*ft_strdup(const char *s)
 	return (s_dup);
 }
 
-/*size_t	ft_strlen(const char *str)
-{
-	size_t	len;
-
-	len = 0;
-	if (str)
-	{
-		while (*(str + len))
-			++len;
-	}
-	return (len);
-}*/
-
 char	*ft_strjoin(char *s1, char *s2)
 {
 	char	*joined;
@@ -70,9 +57,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	while (s2[j])
 		joined[i++] = s2[j++];
 	joined[i] = '\0';
-	free (s1);
-	ft_bzero(s2, ft_strlen(s2));
-	return (joined);
+	return (free(s1), free(s2), joined);
 }
 
 char	*ft_strchr(const char *s, int c)
