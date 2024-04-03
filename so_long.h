@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 14:02:33 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/04/02 13:24:42 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/04/03 11:31:48 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,16 +56,26 @@ typedef struct s_back
 	int		height;
 }	t_back;
 
+typedef struct s_map
+{
+	char	*filename;
+	int		fd;
+	int		x;
+	int		y;
+	int		width;
+	int		height;
+}	t_map;
+
 typedef struct s_win
 {
 	void	*connection;
 	void	*window;
-	char	*map;
 	int		width;
 	int		height;
 	int		coins;
 	t_img	player;
 	t_back	background;
+	t_map	map;
 }	t_win;
 
 #endif
@@ -74,7 +84,7 @@ int		exit_program(t_win *game);
 t_win	ft_create_window(int width, int height, char *str);
 int		ft_movement(t_win *game, int key);
 int		ft_load_textures(t_win *game);
-int		ft_load_map(t_win *game, char *map_file);
+int		ft_load_map(t_win *game);
 int		ft_check_error(int argc);
 int		ft_render_map(t_win *game);
 int		ft_check_extension(const char *filename, const char *ext);

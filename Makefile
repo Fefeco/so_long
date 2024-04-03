@@ -6,7 +6,7 @@
 #    By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/26 09:57:02 by fcarranz          #+#    #+#              #
-#    Updated: 2024/04/02 12:33:31 by fcarranz         ###   ########.fr        #
+#    Updated: 2024/04/03 10:30:15 by fcarranz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ X11_FLAGS=-L/usr/X11/lib -lXext -lX11
 
 all: $(NAME)
 
-$(NAME): $(OBJS) Makefile
+$(NAME): $(OBJS) Makefile so_long.h
 	make -C $(LIBFT_PATH) 
 	make -C $(MLX_PATH)
 	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(MLX_FLAGS) -I$(INC) -o $@

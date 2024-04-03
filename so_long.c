@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 09:52:26 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/04/02 13:24:45 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/04/03 11:44:59 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ int	ft_load_textures(t_win *game)
 int	ft_render(t_win *game)
 {
 	mlx_clear_window(game->connection, game->window);
-	ft_render_map(game);
+//	ft_render_map(game);
 	mlx_put_image_to_window(game->connection, game->window, game->background.floor, 0, 0);
 	mlx_put_image_to_window(game->connection, game->window, game->player.render, 
 			game->player.pos_x, game->player.pos_y);
@@ -109,12 +109,12 @@ int	ft_render(t_win *game)
 	return (0);
 }
 
-int	ft_render_map(t_win *game)
+/*int	ft_render_map(t_win *game)
 {
 	int		fd;
 	char	*line;
 
-	fd = open(game->map, O_RDONLY);
+	fd = open(game->map.filename, O_RDONLY);
 	if (fd < 0)
 		return (1);
 	while (1)
@@ -127,7 +127,7 @@ int	ft_render_map(t_win *game)
 	}
 	close(fd);
 	return (0);
-}
+}*/
 
 //int	ft_render_map_line(char *line)
 //{
@@ -210,7 +210,8 @@ int main(int argc, char *argv[])
 	if (!game.connection || !game.window)
 		return (1);
 	
-	ft_load_map(&game, argv[1]);
+	game.map.filename = argv[1];
+	ft_load_map(&game);
 	ft_load_textures(&game);
 
 	game.player.pos_x = 25;
