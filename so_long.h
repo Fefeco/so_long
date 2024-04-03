@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 14:02:33 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/04/03 11:31:48 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/04/03 12:33:38 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ typedef struct s_back
 typedef struct s_map
 {
 	char	*filename;
+	char	*map_from_file;
 	int		fd;
 	int		x;
 	int		y;

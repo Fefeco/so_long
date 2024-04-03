@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 09:52:26 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/04/03 11:44:59 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/04/03 13:54:03 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -210,6 +210,9 @@ int main(int argc, char *argv[])
 	if (!game.connection || !game.window)
 		return (1);
 	
+	game.map.map_from_file = (char *)malloc(sizeof(char));
+	if(!game.map.map_from_file)
+		return (1);
 	game.map.filename = argv[1];
 	ft_load_map(&game);
 	ft_load_textures(&game);
