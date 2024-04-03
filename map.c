@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 11:29:34 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/04/03 18:49:35 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/04/03 21:37:05 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,38 +18,35 @@ int	ft_check_map_size(t_map *map)
 
 	map->fd = open(map->filename, O_RDONLY);
 	if (map->fd < 0)
-		return (0);
+		return (1);
 	line = get_next_line(map->fd);
 	if (!line)
-		return (0);
+		return (1);
 	map->x = ft_strlen(line) -1; //Remove the \n count 
 	map->y = 0;
 	while (line)
 	{
 		++map->y;
-		map->map_from_file = ft_strjoin(map->map_from_file, ft_strtrim(line, "\n"));
+		map->base_map = ft_strjoin(map->base_map, ft_strtrim(line, "\n"));
 		free (line);
 		line = get_next_line(map->fd);
-		if (line && (int)ft_strlen(line) != map->x + 1)
-			return (close(map->fd), free(line), 0);
+		if (line && (int)ft_strlen(line) - 1 != map->x)
+			return (close(map->fd), free(line), 1);
 	}
-	ft_printf("%s", map->map_from_file);
 	close (map->fd);
 	if (map->x <= map->y)
-		return (0);
-	return (1);
+		return (ft_printf("%s\n", ERROR_MAP_SIZE), 1);
+	map->width = map->x * TILE_W;
+	map->height = map->y * TILE_H;
+	return (0);
 }
 
-int	ft_load_map(t_win *game)
+int	ft_load_map(t_map *map)
 {
-	if (ft_check_extension(game->map.filename, EXTENSION))
-		exit_program(game);
-	if (!ft_check_map_size(&game->map))
-	{
-		ft_printf("%s\n", ERROR_MAP_SIZE);
-		exit_program(game);
-	}
-	exit_program(game);
-	return (1);
+	if (ft_check_extension(map->filename, EXTENSION))
+		return (1);
+	if (ft_check_map_size(map))
+		return (free(map->base_map), 1);
+	return (0);
 //	game->map = map;
 }

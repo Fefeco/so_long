@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 14:02:33 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/04/03 12:33:38 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/04/03 21:33:22 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 #include "ft_printf.h"
 #include "get_next_line.h"
 #include <stdlib.h>
-//#include <stdio.h>
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
@@ -25,8 +24,8 @@
 # define DOWN 125
 # define LEFT 123
 # define RIGHT 124
-# define WIDTH 600
-# define HEIGHT 400
+# define TILE_W 32
+# define TILE_H 32
 
 # define EXTENSION ".ber"
 # define ERROR_NO_MAP "Debe especificar un archivo de mapa."
@@ -59,7 +58,7 @@ typedef struct s_back
 typedef struct s_map
 {
 	char	*filename;
-	char	*map_from_file;
+	char	*base_map;
 	int		fd;
 	int		x;
 	int		y;
@@ -76,7 +75,7 @@ typedef struct s_win
 	int		coins;
 	t_img	player;
 	t_back	background;
-	t_map	map;
+	t_map	*map;
 }	t_win;
 
 #endif
@@ -85,8 +84,15 @@ int		exit_program(t_win *game);
 t_win	ft_create_window(int width, int height, char *str);
 int		ft_movement(t_win *game, int key);
 int		ft_load_textures(t_win *game);
-int		ft_load_map(t_win *game);
+int		ft_load_map(t_map *game);
 int		ft_check_error(int argc);
-int		ft_render_map(t_win *game);
+void		ft_render_map(t_win *game);
 int		ft_check_extension(const char *filename, const char *ext);
 //int		ft_render_map_line(char *line);
+/*void	li(char *str)
+{
+	if (!str)
+		ft_printf("LINEA AQUI\n");
+	else
+		ft_printf("LINEA %s\n", str);
+}*/

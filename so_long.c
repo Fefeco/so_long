@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 09:52:26 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/04/03 13:54:03 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/04/03 21:31:47 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	mouse_click(int button)
 int	ft_load_textures(t_win *game)
 {
 	game->background.floor = mlx_xpm_file_to_image(game->connection, 
-			"img/textura.xpm", 
+			"img/floor.xpm", 
 			&(game->width), 
 			&(game->height));
 
@@ -92,47 +92,51 @@ int	ft_load_textures(t_win *game)
 	return (0);
 }
 
+void	ft_render_map(t_win *game)
+{
+	int	y;
+	int	x;
+	int	i;
+
+	y = 0;
+	i = 0;
+	ft_printf("%s\n", game->map->base_map);
+	while(y < game->map->y)
+	{
+		x = 0;
+		while (x < game->map->x)
+		{
+			if (game->map->base_map[i] == '0')
+			{
+				mlx_put_image_to_window(game->connection, 
+						game->window, 
+						game->background.floor, x * TILE_W, y * TILE_H);
+				ft_printf("X = %d | Y = %d | I = %d | x = %d | y = %d\n", x, y, i, TILE_W * x, TILE_H * y);
+			}
+			++x;
+			++i;
+		}
+		++y;
+	}
+}
+
 int	ft_render(t_win *game)
 {
 	mlx_clear_window(game->connection, game->window);
-//	ft_render_map(game);
-	mlx_put_image_to_window(game->connection, game->window, game->background.floor, 0, 0);
+	ft_render_map(game);
+//	mlx_put_image_to_window(game->connection, game->window, game->background.floor, 0, 0);
 	mlx_put_image_to_window(game->connection, game->window, game->player.render, 
 			game->player.pos_x, game->player.pos_y);
 
 	mlx_string_put(game->connection, 
 			game->window, 
-			WIDTH * 0.4, 
-			HEIGHT * 0.9 , 
+			game->width * 0.4, 
+			game->height * 0.9 , 
 			0xFF99FF, 
 			"GAME ON!");
 	return (0);
 }
 
-/*int	ft_render_map(t_win *game)
-{
-	int		fd;
-	char	*line;
-
-	fd = open(game->map.filename, O_RDONLY);
-	if (fd < 0)
-		return (1);
-	while (1)
-	{
-		line = get_next_line(fd);
-		if (line == NULL)
-			break;
-		//ft_render_map_line(line);
-		free (line);
-	}
-	close(fd);
-	return (0);
-}*/
-
-//int	ft_render_map_line(char *line)
-//{
-//
-//}
 ///////////////////////////////////
 // FIN Funciones para renderizar //
 ///////////////////////////////////
@@ -203,19 +207,20 @@ int	ft_check_error(int argc)
 int main(int argc, char *argv[])
 {
 	t_win	game;
+	t_map	map;
 
 	if (argc == 1 || argc >2)
 		return (ft_check_error(argc));
-	game = ft_create_window(WIDTH, HEIGHT, "My Juego");
+	map.filename = argv[1];
+	map.base_map = (char *)malloc(sizeof(char) * 1);
+	map.base_map[0] = '\0';
+	if (ft_load_map(&map))
+		return (1);
+	game = ft_create_window(map.width, map.height, "My Juego");
 	if (!game.connection || !game.window)
 		return (1);
-	
-	game.map.map_from_file = (char *)malloc(sizeof(char));
-	if(!game.map.map_from_file)
-		return (1);
-	game.map.filename = argv[1];
-	ft_load_map(&game);
 	ft_load_textures(&game);
+	game.map = &map;
 
 	game.player.pos_x = 25;
 	game.player.pos_y = 30;
