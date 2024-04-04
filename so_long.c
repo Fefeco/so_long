@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 09:52:26 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/04/03 21:31:47 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/04/04 10:59:09 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,12 +106,26 @@ void	ft_render_map(t_win *game)
 		x = 0;
 		while (x < game->map->x)
 		{
-			if (game->map->base_map[i] == '0')
+			if (game->map->base_map[i] == '0' || game->map->base_map[i] == 'P'
+					|| game->map->base_map[i] == 'C')
 			{
 				mlx_put_image_to_window(game->connection, 
 						game->window, 
 						game->background.floor, x * TILE_W, y * TILE_H);
-				ft_printf("X = %d | Y = %d | I = %d | x = %d | y = %d\n", x, y, i, TILE_W * x, TILE_H * y);
+		//		ft_printf("X = %d | Y = %d | I = %d | x = %d | y = %d\n", x, y, i, TILE_W * x, TILE_H * y);
+			}
+			if (game->map->base_map[i] == 'P')
+			{
+				game->player.pos_x = x * TILE_W;
+				game->player.pos_y = y * TILE_H;
+				game->map->base_map[i] = '0';
+			}
+
+			if(game->map->base_map[i] == 'C')
+			{
+				mlx_put_image_to_window(game->connection, 
+						game->window, 
+						game->background.coin, x * TILE_W, y * TILE_H);
 			}
 			++x;
 			++i;
@@ -124,9 +138,8 @@ int	ft_render(t_win *game)
 {
 	mlx_clear_window(game->connection, game->window);
 	ft_render_map(game);
-//	mlx_put_image_to_window(game->connection, game->window, game->background.floor, 0, 0);
-	mlx_put_image_to_window(game->connection, game->window, game->player.render, 
-			game->player.pos_x, game->player.pos_y);
+
+	mlx_put_image_to_window(game->connection, game->window, game->player.render, game->player.pos_x, game->player.pos_y);
 
 	mlx_string_put(game->connection, 
 			game->window, 
@@ -154,22 +167,22 @@ int	ft_movement(t_win *game, int key)
 {
 	if (key == UP)
 	{
-		game->player.pos_y -= 20;
+		game->player.pos_y -= TILE_H;
 		game->player.render = game->player.up;
 	}
 	else if (key == DOWN)
 	{
-		game->player.pos_y += 20;
+		game->player.pos_y += TILE_H;
 		game->player.render = game->player.down;
 	}
 	else if (key == RIGHT)
 	{
-		game->player.pos_x += 20;
+		game->player.pos_x += TILE_W;
 		game->player.render = game->player.right;
 	}
 	else if (key == LEFT)
 	{
-		game->player.pos_x -= 20;
+		game->player.pos_x -= TILE_W;
 		game->player.render = game->player.left;
 	}
 	ft_render(game);
@@ -219,23 +232,19 @@ int main(int argc, char *argv[])
 	game = ft_create_window(map.width, map.height, "My Juego");
 	if (!game.connection || !game.window)
 		return (1);
+
 	ft_load_textures(&game);
 	game.map = &map;
-
-	game.player.pos_x = 25;
-	game.player.pos_y = 30;
 	game.player.render = game.player.right;
 	ft_render(&game);
-//	mlx_put_image_to_window(game.connection, game.window, game.player.render, 
-//			game.player.pos_x, game.player.pos_y);
+
 
 	mlx_hook(game.window, 2, 1L << 0, key_press, &game);
 //	mlx_hook(game.window, 6, 1L << 6, mouse_move, NULL);
 //	mlx_hook(game.window, 4, 1L << 2, mouse_click, NULL);
 	mlx_hook(game.window, 17, 0, exit_program, &game); // Codigo DestroyNotify
-	mlx_do_sync(game.connection);
 	mlx_loop(game.connection);
-	mlx_destroy_window(game.connection, game.window);
-	free (game.connection);
+	//mlx_destroy_window(game.connection, game.window);
+	//free (game.connection);
 	return (0);
 }

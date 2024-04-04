@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 14:02:33 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/04/03 21:33:22 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/04/04 10:59:07 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@
 # define DOWN 125
 # define LEFT 123
 # define RIGHT 124
-# define TILE_W 32
-# define TILE_H 32
+# define TILE_W 64
+# define TILE_H 64
 
 # define EXTENSION ".ber"
 # define ERROR_NO_MAP "Debe especificar un archivo de mapa."
