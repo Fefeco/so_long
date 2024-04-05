@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 14:02:33 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/04/05 20:25:27 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/04/05 20:49:13 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@
 # define TILE_H 64
 
 # define EXTENSION ".ber"
-# define ERROR_NO_MAP "Debe especificar un archivo de mapa."
+# define ERROR_NO_MAP "Error\nDebe especificar un archivo de mapa."
 # define ERROR_TO_MANY_ARGS "Demasiados argumentos."
-# define ERROR_EXTENSION "**ERROR de archivo de mapa. Debe ser extension *.ber"
-# define ERROR_MAP_SIZE "**ERROR de mapa. El mapa no es rectangular"
-# define ERROR_MAP "**ERROR de mapa"
+# define ERROR_EXTENSION "Erro\nMapa debe ser extension *.ber"
+# define ERROR_MAP_SIZE "Error\nEl mapa no es rectangular"
+//# define ERROR_MAP "Error\nMapa"
 # define ERROR_STRIPES "**ERROR STRIPES. Cantidad player, coins o exit erronea"
 # define ERROR_MOV "**ERROR Movimiento no permitido"
 # define ERROR_EXIT "**ERROR Aun quedan coins por recoger!"
