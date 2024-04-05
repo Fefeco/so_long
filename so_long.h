@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 14:02:33 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/04/05 14:02:15 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/04/05 20:00:09 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ typedef struct s_map
 	int		y;
 	int		width;
 	int		height;
+	int		coins;
+	char	*coins_lft;
 }	t_map;
 
 typedef struct s_win

@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 13:00:39 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/04/05 13:08:53 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/04/05 20:01:19 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,9 @@ void	ft_render_map(t_win *game)
 
 int	ft_render(t_win *game)
 {
+	char	*coins;
+
+	coins = ft_strjoin(ft_strdup("COINS LEFT: "), ft_itoa(game->map->coins));
 	mlx_clear_window(game->connection, game->window);
 	ft_render_map(game);
 
@@ -122,6 +125,6 @@ int	ft_render(t_win *game)
 			game->width * 0.4, 
 			game->height * 0.9 , 
 			0xFF99FF, 
-			"GAME ON!");
-	return (0);
+			coins);
+	return (free (coins), 0);
 }
