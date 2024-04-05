@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 14:02:33 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/04/05 20:00:09 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/04/05 20:03:14 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ typedef struct s_win
 	void	*window;
 	int		width;
 	int		height;
-	int		coins;
+	//int		coins;
 	t_img	player;
 	t_back	background;
 	t_map	*map;
