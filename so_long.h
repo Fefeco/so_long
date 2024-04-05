@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 14:02:33 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/04/05 13:09:47 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/04/05 14:02:15 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@
 # define ERROR_MAP_SIZE "**ERROR de mapa. El mapa no es rectangular"
 # define ERROR_MAP "**ERROR de mapa"
 # define ERROR_STRIPES "**ERROR STRIPES. Cantidad player, coins o exit erronea"
+# define ERROR_MOV "**ERROR Movimiento no permitido"
 
 typedef struct s_img
 {
