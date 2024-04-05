@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 11:29:34 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/04/04 10:59:05 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/04/05 12:42:24 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,40 @@ int	ft_check_map_size(t_map *map)
 	return (0);
 }
 
+int	ft_validate_stripes(t_map *map)
+{
+	int		i;
+	int		exit;
+	int		player;
+	int		coins;
+	char	c;
+
+	i = 0;
+	exit = 0;
+	player = 0;
+	coins = 0;
+	while (map->base_map[i])
+	{
+		c = map->base_map[i++];
+		if (!ft_strchr("EPC01", c))
+			return (1);
+		else if(c == 'E')
+			++exit;
+		else if (c == 'P')
+			++player;
+		else if (c == 'C')
+			++coins;
+	}
+	if (exit != 1 || player != 1 || coins < 1)
+		return (ft_printf("%s\n", ERROR_STRIPES), 1);
+	return (0);
+}
+
 int	ft_load_map(t_map *map)
 {
 	if (ft_check_extension(map->filename, EXTENSION))
 		return (1);
-	if (ft_check_map_size(map))
+	if (ft_check_map_size(map) || ft_validate_stripes(map))
 		return (free(map->base_map), 1);
 	return (0);
 //	game->map = map;

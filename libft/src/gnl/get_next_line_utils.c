@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/10 11:36:56 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/04/03 18:57:14 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/04/05 12:38:31 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,20 +58,6 @@ char	*ft_strjoin(char *s1, char *s2)
 		joined[i++] = s2[j++];
 	joined[i] = '\0';
 	return (free(s1), free(s2), joined);
-}
-
-char	*ft_strchr(const char *s, int c)
-{
-	int	i;
-
-	i = 0;
-	while (*(s + i) != (char)c)
-	{
-		if (!*(s + i))
-			return (NULL);
-		++i;
-	}
-	return ((char *)(s + i));
 }
 
 void	ft_bzero(char *buffer, size_t len)

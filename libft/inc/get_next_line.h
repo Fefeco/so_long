@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 10:51:53 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/04/03 18:54:52 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/04/05 12:37:55 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@
 char	*get_next_line(int fd);
 char	*ft_strdup(const char *s);
 char	*ft_strjoin(char *s1, char *s2);
-char	*ft_strchr(const char *s, int c);
 void	ft_bzero(char *s, size_t len);
 
 #endif

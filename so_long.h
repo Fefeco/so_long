@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 14:02:33 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/04/04 10:59:07 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/04/05 13:09:47 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@
 # define ERROR_EXTENSION "**ERROR de archivo de mapa. Debe ser extension *.ber"
 # define ERROR_MAP_SIZE "**ERROR de mapa. El mapa no es rectangular"
 # define ERROR_MAP "**ERROR de mapa"
+# define ERROR_STRIPES "**ERROR STRIPES. Cantidad player, coins o exit erronea"
 
 typedef struct s_img
 {
@@ -86,8 +87,9 @@ int		ft_movement(t_win *game, int key);
 int		ft_load_textures(t_win *game);
 int		ft_load_map(t_map *game);
 int		ft_check_error(int argc);
-void		ft_render_map(t_win *game);
 int		ft_check_extension(const char *filename, const char *ext);
+//void	ft_render_map(t_win *game);
+int		ft_render(t_win *game);
 //int		ft_render_map_line(char *line);
 /*void	li(char *str)
 {
