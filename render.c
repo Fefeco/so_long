@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 13:00:39 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/04/05 20:01:19 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/04/05 21:27:25 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	ft_render_map(t_win *game)
 
 	y = 0;
 	i = 0;
-	ft_printf("%s\n", game->map->base_map);
+	ft_printf("MAP: %s\nMovements :%d\n", game->map->base_map, game->movements);
 	while(y < game->map->y)
 	{
 		x = 0;
@@ -113,8 +113,10 @@ void	ft_render_map(t_win *game)
 int	ft_render(t_win *game)
 {
 	char	*coins;
+	char	*mov;
 
 	coins = ft_strjoin(ft_strdup("COINS LEFT: "), ft_itoa(game->map->coins));
+	mov = ft_strjoin(ft_strdup("MOVEMENTS: "), ft_itoa(game->movements));
 	mlx_clear_window(game->connection, game->window);
 	ft_render_map(game);
 
@@ -122,9 +124,15 @@ int	ft_render(t_win *game)
 
 	mlx_string_put(game->connection, 
 			game->window, 
-			game->width * 0.4, 
-			game->height * 0.9 , 
+			game->map->width * 0.4, 
+			game->map->height * 0.9 , 
 			0xFF99FF, 
 			coins);
-	return (free (coins), 0);
+	mlx_string_put(game->connection, 
+			game->window, 
+			game->map->width * 0.4, 
+			game->map->height * 0.85 , 
+			0xFF99FF, 
+			mov);
+	return (free (coins), free (mov), 0);
 }

@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 09:52:26 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/04/05 19:14:14 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/04/05 21:11:42 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ int main(int argc, char *argv[])
 	ft_load_textures(&game);
 	game.map = &map;
 	game.player.render = game.player.right;
+	game.movements = 0;
 	ft_render(&game);
 
 

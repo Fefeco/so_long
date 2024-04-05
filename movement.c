@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 19:11:28 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/04/05 20:32:39 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/04/05 20:56:40 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ int	ft_validate_movement(t_win *game)
 		ft_printf("%s\n", WIN);
 		exit_program(game);
 	}
+	++game->movements;
 	return (0);
 }
 
