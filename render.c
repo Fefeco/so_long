@@ -6,102 +6,50 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 13:00:39 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/04/06 11:58:44 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/04/06 12:39:36 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	ft_load_textures(t_win *game)
+void	ft_render_specials(t_win *game, char map_pos, int x, int y, int i)
 {
-	game->background.floor = mlx_xpm_file_to_image(game->connection, 
-			"img/floor.xpm", 
-			&(game->width), 
-			&(game->height));
-
-	game->background.wall = mlx_xpm_file_to_image(game->connection, 
-			"img/wall.xpm", 
-			&(game->width), 
-			&(game->height));
-
-	game->background.coin = mlx_xpm_file_to_image(game->connection, 
-			"img/coin.xpm", 
-			&(game->width), 
-			&(game->height));
-
-	game->background.exit = mlx_xpm_file_to_image(game->connection, 
-			"img/exit.xpm", 
-			&(game->width), 
-			&(game->height));
-
-	game->player.right = mlx_xpm_file_to_image(game->connection, 
-			"img/player_right.xpm", 
-			&(game->width), 
-			&(game->height));
-
-	game->player.up = mlx_xpm_file_to_image(game->connection, 
-			"img/player_up.xpm", 
-			&(game->width), 
-			&(game->height));
-	
-	game->player.left = mlx_xpm_file_to_image(game->connection, 
-			"img/player_left.xpm", 
-			&(game->width), 
-			&(game->height));
-	
-	game->player.down = mlx_xpm_file_to_image(game->connection, 
-			"img/player_down.xpm", 
-			&(game->width), 
-			&(game->height));
-	return (0);
+	if(map_pos == 'C')
+		mlx_put_image_to_window(game->connection, game->window, 
+				game->background.coin, x * TILE_W, y * TILE_H);
+	if (map_pos == '1')
+		mlx_put_image_to_window(game->connection, game->window, 
+				game->background.wall, x * TILE_W, y * TILE_H);
+	if (map_pos == 'E')
+		mlx_put_image_to_window(game->connection, game->window, 
+				game->background.exit, x * TILE_W, y * TILE_H);
+	if (map_pos == 'P')
+	{
+		game->player.pos_x = x * TILE_W;
+		game->player.pos_y = y * TILE_H;
+		game->map->base_map[i] = '0';
+	}
 }
-
 void	ft_render_map(t_win *game)
 {
-	int	y;
-	int	x;
-	int	i;
+	int		y;
+	int		x;
+	int		i;
+	char	map_pos;
 
 	y = 0;
 	i = 0;
-	ft_printf("MAP: %s\nMovements :%d\n", game->map->base_map, game->movements);
 	while(y < game->map->y)
 	{
 		x = 0;
 		while (x < game->map->x)
 		{
-			if (game->map->base_map[i] == '0' || game->map->base_map[i] == 'P'
-					|| game->map->base_map[i] == 'C')
-			{
-				mlx_put_image_to_window(game->connection, 
-						game->window, 
+			map_pos = game->map->base_map[i];
+			if (ft_strchr("0PC", map_pos))
+				mlx_put_image_to_window(game->connection, game->window, 
 						game->background.floor, x * TILE_W, y * TILE_H);
-			}
-			if (game->map->base_map[i] == 'P')
-			{
-				game->player.pos_x = x * TILE_W;
-				game->player.pos_y = y * TILE_H;
-				game->map->base_map[i] = '0';
-			}
-
-			if(game->map->base_map[i] == 'C')
-			{
-				mlx_put_image_to_window(game->connection, 
-						game->window, 
-						game->background.coin, x * TILE_W, y * TILE_H);
-			}
-			if (game->map->base_map[i] == '1')
-			{
-				mlx_put_image_to_window(game->connection, 
-						game->window, 
-						game->background.wall, x * TILE_W, y * TILE_H);
-			}
-			if (game->map->base_map[i] == 'E')
-			{
-				mlx_put_image_to_window(game->connection, 
-						game->window, 
-						game->background.exit, x * TILE_W, y * TILE_H);
-			}
+			if (ft_strchr("C1EP", map_pos))
+				ft_render_specials(game, map_pos, x, y, i);
 			++x;
 			++i;
 		}
