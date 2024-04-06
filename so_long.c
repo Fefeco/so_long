@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 09:52:26 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/04/06 11:53:50 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/04/06 13:11:35 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ int main(int argc, char *argv[])
 	game = ft_create_window(map.width, map.height, "My Juego");
 	if (!game.connection || !game.window)
 		return (1);
-	ft_load_textures(&game);
+	if (ft_load_textures(&game))
+		exit_program(&game);
 	game.map = &map;
 	game.player.render = game.player.down;
 	game.movements = 0;

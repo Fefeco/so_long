@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 13:00:39 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/04/06 12:55:14 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/04/06 13:12:45 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@ void	ft_render_specials(t_win *game, char *map_pos, int x, int y)
 {
 	if (*map_pos == 'C')
 		mlx_put_image_to_window(game->connection, game->window,
-			game->background.coin, x * TILE_W, y * TILE_H);
+			game->bg.coin, x * TILE_W, y * TILE_H);
 	if (*map_pos == '1')
 		mlx_put_image_to_window(game->connection, game->window,
-			game->background.wall, x * TILE_W, y * TILE_H);
+			game->bg.wall, x * TILE_W, y * TILE_H);
 	if (*map_pos == 'E')
 		mlx_put_image_to_window(game->connection, game->window,
-			game->background.exit, x * TILE_W, y * TILE_H);
+			game->bg.exit, x * TILE_W, y * TILE_H);
 	if (*map_pos == 'P')
 	{
 		game->player.pos_x = x * TILE_W;
@@ -48,7 +48,7 @@ void	ft_render_map(t_win *game)
 			map_pos = &game->map->base_map[i];
 			if (ft_strchr("0PC", *map_pos))
 				mlx_put_image_to_window(game->connection, game->window,
-					game->background.floor, x * TILE_W, y * TILE_H);
+					game->bg.floor, x * TILE_W, y * TILE_H);
 			if (ft_strchr("C1EP", *map_pos))
 				ft_render_specials(game, map_pos, x, y);
 			++x;

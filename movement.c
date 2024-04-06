@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 19:11:28 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/04/06 11:18:30 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/04/06 13:15:19 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	ft_validate_movement(t_win *game)
 	player_pos = x + (y * game->map->x);
 	map_pos = game->map->base_map[player_pos];
 	if (map_pos == '1')
-		return (perror(ERROR_MOV), 1);
+		return (ft_printf("%s\n", ERROR_MOV), 1);
 	else if (map_pos == 'C')
 	{
 		game->map->base_map[player_pos] = '0';
@@ -33,7 +33,7 @@ int	ft_validate_movement(t_win *game)
 	else if (map_pos == 'E')
 	{
 		if (game->map->coins != 0)
-			return (perror(ERROR_EXIT), 1);
+			return (ft_printf("%s\n", ERROR_EXIT), 1);
 		ft_printf("%s\n", WIN);
 		exit_program(game);
 	}

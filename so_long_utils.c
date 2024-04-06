@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 14:01:32 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/04/06 12:39:40 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/04/06 13:13:49 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,13 @@ t_win   ft_create_window(int width, int height, char *str)
 
 int	ft_load_textures(t_win *game)
 {
-	game->background.floor = mlx_xpm_file_to_image(game->connection, 
+	game->bg.floor = mlx_xpm_file_to_image(game->connection, 
 			"img/floor.xpm", &(game->width), &(game->height));
-	game->background.wall = mlx_xpm_file_to_image(game->connection, 
+	game->bg.wall = mlx_xpm_file_to_image(game->connection, 
 			"img/wall.xpm", &(game->width), &(game->height));
-	game->background.coin = mlx_xpm_file_to_image(game->connection, 
+	game->bg.coin = mlx_xpm_file_to_image(game->connection, 
 			"img/coin.xpm", &(game->width), &(game->height));
-	game->background.exit = mlx_xpm_file_to_image(game->connection, 
+	game->bg.exit = mlx_xpm_file_to_image(game->connection, 
 			"img/exit.xpm", &(game->width), &(game->height));
 	game->player.right = mlx_xpm_file_to_image(game->connection, 
 			"img/player_right.xpm", &(game->width), &(game->height));
@@ -50,6 +50,10 @@ int	ft_load_textures(t_win *game)
 			"img/player_left.xpm", &(game->width), &(game->height));
 	game->player.down = mlx_xpm_file_to_image(game->connection, 
 			"img/player_down.xpm", &(game->width), &(game->height));
+	if (!game->bg.floor || !game->bg.wall || !game->bg.coin ||
+		!game->bg.exit || !game->player.right || !game->player.up ||
+		!game->player.left || !game->player.down)
+		return (perror(ERROR_LOAD_TEX), 1);
 	return (0);
 }
 

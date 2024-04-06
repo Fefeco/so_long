@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 14:02:33 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/04/06 11:51:32 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/04/06 13:11:58 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@
 # define ERROR_MAP_SIZE "Error\nEl mapa no es rectangular"
 # define ERROR_MAP "Error\nMapa"
 # define ERROR_STRIPES "ERROR\nCantidad player, coins o exit erronea"
+# define ERROR_LOAD_TEX "ERROR\nCargando texturas"
 # define ERROR_CONNECTION "ERROR\nFallo la conexion con el servidor X"
 # define ERROR_MOV "ERROR\nMovimiento no permitido"
 # define ERROR_EXIT "ERROR\nAun quedan coins por recoger!"
@@ -92,7 +93,7 @@ typedef struct s_win
 	int		coins;
 	int		movements;
 	t_img	player;
-	t_back	background;
+	t_back	bg;
 	t_map	*map;
 }	t_win;
 
