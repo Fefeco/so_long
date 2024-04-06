@@ -6,11 +6,18 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 14:01:32 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/04/06 10:50:09 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/04/06 11:53:48 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+int	exit_program(t_win *game)
+{
+	if (game)
+		mlx_destroy_window(game->connection, game->window);
+	exit(EXIT_FAILURE);
+}
 
 t_win   ft_create_window(int width, int height, char *str)
 {

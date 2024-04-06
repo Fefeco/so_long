@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 14:02:33 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/04/06 11:43:14 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/04/06 11:51:32 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,15 +103,7 @@ t_win	ft_create_window(int width, int height, char *str);
 int		ft_movement(t_win *game, int key);
 int		ft_load_textures(t_win *game);
 int		ft_load_map(t_map *game);
-int		ft_check_error(int argc);
 int		ft_check_extension(const char *filename, const char *ext);
 //void	ft_render_map(t_win *game);
 int		ft_render(t_win *game);
 //int		ft_render_map_line(char *line);
-/*void	li(char *str)
-{
-	if (!str)
-		ft_printf("LINEA AQUI\n");
-	else
-		ft_printf("LINEA %s\n", str);
-}*/

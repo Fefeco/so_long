@@ -6,59 +6,22 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 09:52:26 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/04/06 11:22:02 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/04/06 11:53:50 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-//////////////////////////////
-// Funciones para los Hooks //
-//////////////////////////////
-int	exit_program(t_win *game)
-{
-	if (game)
-		mlx_destroy_window(game->connection, game->window);
-	exit(EXIT_FAILURE);
-}
 
 int	key_press(int key, t_win *game)
 {
 	if (key == ESC)
 		exit_program(game);
 	else if (key == UP || key == DOWN || key == LEFT || key == RIGHT)
-	{
-		printf("Brujo en posicion \nx = %d\ny = %d\n", 
-				game->player.pos_x, 
-				game->player.pos_y);
 		ft_movement(game, key);
-	}
 	else
 		printf("Tecla %d presionada\n", key);
 	return (0);
 }
-
-int	mouse_move(int x, int y)
-{
-	printf("Mouse en la posicion (%d, %d)\n", x, y);
-	return (0);
-}
-
-int	mouse_click(int button)
-{
-	printf("Mouse click %d\n", button);
-	return (0);
-}
-//////////////////////////////////
-// Fin Funciones para los Hooks //
-//////////////////////////////////
-//
-//
-//
-//
-//
-//
-//
 
 int	ft_check_error(int argc)
 {
@@ -84,20 +47,13 @@ int main(int argc, char *argv[])
 	game = ft_create_window(map.width, map.height, "My Juego");
 	if (!game.connection || !game.window)
 		return (1);
-
 	ft_load_textures(&game);
 	game.map = &map;
-	game.player.render = game.player.right;
+	game.player.render = game.player.down;
 	game.movements = 0;
 	ft_render(&game);
-
-
 	mlx_hook(game.window, 2, 1L << 0, key_press, &game);
-//	mlx_hook(game.window, 6, 1L << 6, mouse_move, NULL);
-//	mlx_hook(game.window, 4, 1L << 2, mouse_click, NULL);
 	mlx_hook(game.window, 17, 0, exit_program, &game); // Codigo DestroyNotify
 	mlx_loop(game.connection);
-	//mlx_destroy_window(game.connection, game.window);
-	//free (game.connection);
 	return (0);
 }

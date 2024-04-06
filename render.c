@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 13:00:39 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/04/05 21:27:25 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/04/06 11:58:44 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,6 @@ void	ft_render_map(t_win *game)
 				mlx_put_image_to_window(game->connection, 
 						game->window, 
 						game->background.floor, x * TILE_W, y * TILE_H);
-		//		ft_printf("X = %d | Y = %d | I = %d | x = %d | y = %d\n", x, y, i, TILE_W * x, TILE_H * y);
 			}
 			if (game->map->base_map[i] == 'P')
 			{
@@ -119,20 +118,13 @@ int	ft_render(t_win *game)
 	mov = ft_strjoin(ft_strdup("MOVEMENTS: "), ft_itoa(game->movements));
 	mlx_clear_window(game->connection, game->window);
 	ft_render_map(game);
-
-	mlx_put_image_to_window(game->connection, game->window, game->player.render, game->player.pos_x, game->player.pos_y);
-
-	mlx_string_put(game->connection, 
-			game->window, 
-			game->map->width * 0.4, 
-			game->map->height * 0.9 , 
-			0xFF99FF, 
-			coins);
-	mlx_string_put(game->connection, 
-			game->window, 
-			game->map->width * 0.4, 
-			game->map->height * 0.85 , 
-			0xFF99FF, 
-			mov);
-	return (free (coins), free (mov), 0);
+	mlx_put_image_to_window(game->connection, game->window, 
+			game->player.render, game->player.pos_x, game->player.pos_y);
+	mlx_string_put(game->connection, game->window, game->map->width * 0.4, 
+			game->map->height * 0.9 , 0xFF99FF, coins);
+	mlx_string_put(game->connection, game->window,game->map->width * 0.4, 
+			game->map->height * 0.85 , 0xFF99FF,mov);
+	free (coins);
+	free (mov);
+	return (0);
 }
