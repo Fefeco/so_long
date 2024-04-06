@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 11:29:34 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/04/06 11:05:29 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/04/06 13:34:50 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	ft_validate_stripes(t_map *map)
 	{
 		c = map->base_map[i++];
 		if (!ft_strchr("EPC01", c))
-			return (1);
+			return (perror(ERROR_INVALID_CHAR), 1);
 		else if(c == 'E')
 			++exit;
 		else if (c == 'P')
