@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 09:52:26 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/04/05 21:11:42 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/04/06 11:22:02 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ int	exit_program(t_win *game)
 
 int	key_press(int key, t_win *game)
 {
-	if (key == 53)
+	if (key == ESC)
 		exit_program(game);
-	else if (key >= 123 && key <= 126)
+	else if (key == UP || key == DOWN || key == LEFT || key == RIGHT)
 	{
 		printf("Brujo en posicion \nx = %d\ny = %d\n", 
 				game->player.pos_x, 
@@ -63,9 +63,9 @@ int	mouse_click(int button)
 int	ft_check_error(int argc)
 {
 	if (argc == 1)
-		ft_printf("%s\n", ERROR_NO_MAP);
+		perror(ERROR_NO_MAP);
 	if (argc > 2)
-		ft_printf("%s\n", ERROR_TO_MANY_ARGS);
+		perror(ERROR_TO_MANY_ARGS);
 	return (1);
 }
 
