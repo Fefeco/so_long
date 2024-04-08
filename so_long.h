@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 14:02:33 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/04/08 10:00:00 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/04/08 10:32:52 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@
 # define ERROR_TO_MANY_ARGS "ERROR\nDemasiados argumentos."
 # define ERROR_MAP_SIZE "Error\nEl mapa no es rectangular"
 # define ERROR_MAP "Error\nMapa"
+# define ERROR_WALLS "Error\nMapa debe estar rodeado de paredes"
 # define ERROR_STRIPES "ERROR\nCantidad player, coins o exit erronea"
 # define ERROR_INVALID_CHAR "ERROR\nCaracter invalido en mapa"
 # define ERROR_LOAD_TEX "ERROR\nCargando texturas"

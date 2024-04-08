@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 11:29:34 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/04/08 09:48:23 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/04/08 10:37:41 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	ft_check_map_size(t_map *map)
 	return (0);
 }
 
-int	ft_validate_stripes(t_map *map)
+int	ft_validate_sprites(t_map *map)
 {
 	int		i;
 	int		exit;
@@ -69,11 +69,38 @@ int	ft_validate_stripes(t_map *map)
 	return (0);
 }
 
+int	ft_check_walls(t_map *map)
+{
+	int	i;
+	int	x;
+	int	y;
+
+	i = 0;
+	y = 0;
+	while (y < map->y)
+	{
+		x = 0;
+		while (x < map->x)
+		{
+			if ((y == 0 && map->base_map[i] != '1') || (y == map->y -1
+					&& map->base_map[i] != '1') || (x == 0
+					&& map->base_map[i] != '1') || (x == map->x -1
+					&& map->base_map[i] != '1'))
+				return (perror(ERROR_WALLS), 1);
+			++x;
+			++i;
+		}
+		++y;
+	}
+	return (0);
+}
+
 int	ft_load_map(t_map *map)
 {
 	if (ft_check_extension(map->filename, EXTENSION))
 		return (1);
-	if (ft_check_map_size(map) || ft_validate_stripes(map))
+	if (ft_check_map_size(map) || ft_check_walls(map)
+		|| ft_validate_sprites(map))
 		return (free(map->base_map), 1);
 	return (0);
 }
