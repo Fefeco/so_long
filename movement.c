@@ -6,11 +6,19 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 19:11:28 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/04/06 13:15:19 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/04/08 09:33:15 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	ft_collect_coin(t_win *game, int player_pos)
+{
+	game->map->base_map[player_pos] = '0';
+	--game->map->coins;
+	if (game->map->coins == 0)
+		game->bg.exit = game->bg.exit_open;
+}
 
 int	ft_validate_movement(t_win *game)
 {
@@ -26,10 +34,7 @@ int	ft_validate_movement(t_win *game)
 	if (map_pos == '1')
 		return (ft_printf("%s\n", ERROR_MOV), 1);
 	else if (map_pos == 'C')
-	{
-		game->map->base_map[player_pos] = '0';
-		--game->map->coins;
-	}
+		ft_collect_coin(game, player_pos);
 	else if (map_pos == 'E')
 	{
 		if (game->map->coins != 0)

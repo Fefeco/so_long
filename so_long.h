@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 14:02:33 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/04/06 13:35:58 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/04/08 09:29:44 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ typedef struct s_back
 	void	*coin;
 	void	*floor;
 	void	*exit;
+	void	*exit_open;
 	int		width;
 	int		height;
 }	t_back;
