@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 14:02:33 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/04/08 13:23:32 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/04/08 15:38:50 by fedeito          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@
 #  define LEFT 0
 #  define RIGHT 2
 # else
-#  define ESC 53
-#  define UP 126
-#  define DOWN 125
-#  define LEFT 123
-#  define RIGHT 124
+#  define ESC 65307
+#  define UP 119
+#  define DOWN 115
+#  define LEFT 97
+#  define RIGHT 100
 # endif
 
 # define TILE_W 64
