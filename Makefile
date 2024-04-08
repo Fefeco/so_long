@@ -6,7 +6,7 @@
 #    By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/26 09:57:02 by fcarranz          #+#    #+#              #
-#    Updated: 2024/04/05 19:17:51 by fcarranz         ###   ########.fr        #
+#    Updated: 2024/04/08 13:05:25 by fcarranz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,7 @@ SRC=so_long.c \
 	so_long_utils.c \
 	map.c \
 	render.c \
+	algorithm.c \
 	movement.c
 OBJS=$(SRC:%.c=%.o)
 

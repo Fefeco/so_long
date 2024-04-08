@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 11:29:34 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/04/08 10:37:41 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/04/08 14:02:28 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,10 +97,18 @@ int	ft_check_walls(t_map *map)
 
 int	ft_load_map(t_map *map)
 {
+	int	pos;
+
 	if (ft_check_extension(map->filename, EXTENSION))
 		return (1);
 	if (ft_check_map_size(map) || ft_check_walls(map)
 		|| ft_validate_sprites(map))
 		return (free(map->base_map), 1);
+	pos = ft_find_player(map);
+	ft_printf("PLAYER EN POSICION: %d\n\n", pos);
+	map->path = 0;
+	if (ft_check_path_available(map, 0, 0, pos))
+		return (free(map->base_map), 1);
 	return (0);
 }
+
