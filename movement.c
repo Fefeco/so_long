@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 19:11:28 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/04/08 09:33:15 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/04/08 10:00:31 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,26 @@ int	ft_validate_movement(t_win *game)
 	return (0);
 }
 
-int	ft_movement(t_win *game, int key)
+void	ft_movement_aux(t_win *game, int key)
 {
-	ft_printf("UP: %d\nDOWN: %d\nLEFT: %d\nRIGHT: %d\n", UP, DOWN, LEFT, RIGHT);
+	if (key == RIGHT)
+	{
+		game->player.pos_x += TILE_W;
+		game->player.render = game->player.right;
+		if (ft_validate_movement(game))
+			game->player.pos_x -= TILE_W;
+	}
+	else if (key == LEFT)
+	{
+		game->player.pos_x -= TILE_W;
+		game->player.render = game->player.left;
+		if (ft_validate_movement(game))
+			game->player.pos_x += TILE_W;
+	}
+}
+
+void	ft_movement(t_win *game, int key)
+{
 	if (key == UP)
 	{
 		game->player.pos_y -= TILE_H;
@@ -63,20 +80,6 @@ int	ft_movement(t_win *game, int key)
 		if (ft_validate_movement(game))
 			game->player.pos_y -= TILE_H;
 	}
-	else if (key == RIGHT)
-	{
-		game->player.pos_x += TILE_W;
-		game->player.render = game->player.right;
-		if (ft_validate_movement(game))
-			game->player.pos_x -= TILE_W;
-	}
-	else if (key == LEFT)
-	{
-		game->player.pos_x -= TILE_W;
-		game->player.render = game->player.left;
-		if (ft_validate_movement(game))
-			game->player.pos_x += TILE_W;
-	}
+	ft_movement_aux(game, key);
 	ft_render(game);
-	return (0);
 }

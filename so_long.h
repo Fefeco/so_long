@@ -6,18 +6,18 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 14:02:33 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/04/08 09:29:44 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/04/08 10:00:00 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx.h"
-#include "libft.h"
-#include "ft_printf.h"
-#include "get_next_line.h"
-#include <stdlib.h>
-
 #ifndef SO_LONG_H
 # define SO_LONG_H
+
+# include "mlx.h"
+# include "libft.h"
+# include "ft_printf.h"
+# include "get_next_line.h"
+# include <stdlib.h>
 
 # ifdef __APPLE__
 #  define ESC 53
@@ -99,14 +99,12 @@ typedef struct s_win
 	t_map	*map;
 }	t_win;
 
-#endif
-
 int		exit_program(t_win *game);
 t_win	ft_create_window(int width, int height, char *str);
-int		ft_movement(t_win *game, int key);
+void	ft_movement(t_win *game, int key);
 int		ft_load_textures(t_win *game);
 int		ft_load_map(t_map *game);
 int		ft_check_extension(const char *filename, const char *ext);
-//void	ft_render_map(t_win *game);
 int		ft_render(t_win *game);
-//int		ft_render_map_line(char *line);
+
+#endif

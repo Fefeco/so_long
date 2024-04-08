@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 09:52:26 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/04/06 13:11:35 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/04/08 09:46:48 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,12 @@ int	ft_check_error(int argc)
 	return (1);
 }
 
-int main(int argc, char *argv[])
+int	main(int argc, char *argv[])
 {
 	t_win	game;
 	t_map	map;
 
-	if (argc == 1 || argc >2)
+	if (argc == 1 || argc > 2)
 		return (ft_check_error(argc));
 	map.filename = argv[1];
 	map.base_map = (char *)malloc(sizeof(char) * 1);
@@ -54,7 +54,7 @@ int main(int argc, char *argv[])
 	game.movements = 0;
 	ft_render(&game);
 	mlx_hook(game.window, 2, 1L << 0, key_press, &game);
-	mlx_hook(game.window, 17, 0, exit_program, &game); // Codigo DestroyNotify
+	mlx_hook(game.window, 17, 0, exit_program, &game);
 	mlx_loop(game.connection);
 	return (0);
 }

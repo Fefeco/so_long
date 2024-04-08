@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 11:29:34 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/04/06 13:34:50 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/04/08 09:48:23 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	ft_check_map_size(t_map *map)
 	line = get_next_line(map->fd);
 	if (!line)
 		return (1);
-	map->x = ft_strlen(line) -1; //Remove the \n count 
+	map->x = ft_strlen(line) -1;
 	map->y = 0;
 	while (line)
 	{
@@ -57,7 +57,7 @@ int	ft_validate_stripes(t_map *map)
 		c = map->base_map[i++];
 		if (!ft_strchr("EPC01", c))
 			return (perror(ERROR_INVALID_CHAR), 1);
-		else if(c == 'E')
+		else if (c == 'E')
 			++exit;
 		else if (c == 'P')
 			++player;
@@ -76,5 +76,4 @@ int	ft_load_map(t_map *map)
 	if (ft_check_map_size(map) || ft_validate_stripes(map))
 		return (free(map->base_map), 1);
 	return (0);
-//	game->map = map;
 }
