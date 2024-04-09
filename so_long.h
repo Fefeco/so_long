@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 14:02:33 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/04/08 15:38:50 by fedeito          ###   ########.fr       */
+/*   Updated: 2024/04/09 12:47:42 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,14 @@
 # define ERROR_EXIT "ERROR\nAun quedan coins por recoger!"
 # define WIN "HAS GANADO!!"
 
+typedef struct s_check_path
+{
+	int	coins;
+	int	exit;
+	int	valid;
+	int	*visited;
+}	t_cpath;
+
 typedef struct s_img
 {
 	void	*up;
@@ -84,8 +92,8 @@ typedef struct s_map
 	int		width;
 	int		height;
 	int		coins;
-	int		path;
 	char	*coins_lft;
+	t_cpath	cpath;
 }	t_map;
 
 typedef struct s_win
@@ -109,6 +117,6 @@ int		ft_load_map(t_map *game);
 int		ft_check_extension(const char *filename, const char *ext);
 int		ft_render(t_win *game);
 int		ft_find_player(t_map *map);
-int		ft_check_path_available(t_map *map, int coins, int exit, int pos);
+int		ft_check_path_available(t_map *map, int pos);
 
 #endif

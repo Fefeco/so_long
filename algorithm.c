@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 11:51:11 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/04/08 14:02:05 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/04/09 14:03:14 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,25 +22,29 @@ int	ft_find_player(t_map *map)
 	return (i);
 }
 
-int	ft_check_path_available(t_map *map, int coins, int exit, int pos)
+int	ft_check_path_available(t_map *map, int pos)
 {
-	ft_printf("BUSQUEDA: %d| MAP X : %d\n", pos, map->x);
-	if (map->base_map[pos] == '1' || map->path == 1)
-		return 1;
-	if (map->base_map[pos] == 'C')
-		++coins;
-	if (map->base_map[pos] == 'E')
-		++exit;
-	if (exit == 1 && coins == map->coins)
-	{
-		map->path = 1;
-		return (ft_printf("Camino encontrado"), 0);
-	}
-	ft_check_path_available(map, coins, exit, pos + map->x);
-	ft_check_path_available(map, coins, exit, pos + 1);
-	ft_check_path_available(map, coins, exit, pos - 1);
-	ft_check_path_available(map, coins, exit, pos - map->x);
-	if (map->path == 1)
+//	ft_printf("POSICION: |%d| || COINS: %d || EXIT: %d\n", pos, map->cpath.coins, map->cpath.exit);
+	if (map->base_map[pos] == '1' || map->cpath.valid == 1)
 		return (0);
-	return (ft_printf("No hay camino posible"), 1);
+
+	map->cpath.visited[pos] = 1;
+	if (map->base_map[pos] == 'C')
+		++map->cpath.coins;
+
+	if (map->base_map[pos] == 'E')
+		++map->cpath.exit;
+//
+	if (map->cpath.visited[pos + map->x] != 1)
+		ft_check_path_available(map, pos + map->x);
+	if (map->cpath.visited[pos + 1] != 1)
+		ft_check_path_available(map, pos + 1);
+	if (map->cpath.visited[pos - 1] != 1)
+		ft_check_path_available(map, pos - 1);
+	if (map->cpath.visited[pos - map->x] != 1)
+		ft_check_path_available(map, pos - map->x);
+//
+	if (map->cpath.exit == 1 && map->cpath.coins == map->coins)
+		map->cpath.valid = 1;
+	return (1);
 }

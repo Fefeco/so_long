@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 11:29:34 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/04/08 14:02:28 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/04/09 14:05:14 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,9 @@ int	ft_check_walls(t_map *map)
 int	ft_load_map(t_map *map)
 {
 	int	pos;
+	int	i;
+	int	y;
+	int	x;
 
 	if (ft_check_extension(map->filename, EXTENSION))
 		return (1);
@@ -106,9 +109,46 @@ int	ft_load_map(t_map *map)
 		return (free(map->base_map), 1);
 	pos = ft_find_player(map);
 	ft_printf("PLAYER EN POSICION: %d\n\n", pos);
-	map->path = 0;
-	if (ft_check_path_available(map, 0, 0, pos))
-		return (free(map->base_map), 1);
+	map->cpath.valid = 0;
+	map->cpath.coins = 0;
+	map->cpath.exit = 0;
+	map->cpath.visited = (int *)ft_calloc(sizeof(int), (map->x * map->y));
+	i = 0;
+	y = 0;
+	ft_printf("\n");
+	while(y < map->y)
+	{
+		x = 0;
+		while (x < map->x)
+		{
+			ft_printf("|%d|", map->cpath.visited[i]);
+			++x;
+			++i;
+		}
+		ft_printf("\n");
+		++y;
+	}
+	ft_printf("PATH =%d\n", map->cpath.valid);
+	if (ft_check_path_available(map, pos))
+	{
+		i = 0;
+		y = 0;
+		ft_printf("\n");
+		while(y < map->y)
+		{
+			x = 0;
+			while (x < map->x)
+			{
+				ft_printf("|%d|", map->cpath.visited[i]);
+				++x;
+				++i;
+			}
+			ft_printf("\n");
+			++y;
+		}
+		ft_printf("PATH =%d\n", map->cpath.valid);
+		return (free(map->base_map), free(map->cpath.visited), 1);
+	}
 	return (0);
 }
 
