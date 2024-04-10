@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 14:02:33 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/04/09 12:47:42 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/04/10 10:03:52 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ typedef struct s_check_path
 	int	exit;
 	int	valid;
 	int	*visited;
-}	t_cpath;
+}	t_chpath;
 
 typedef struct s_img
 {
@@ -93,7 +93,7 @@ typedef struct s_map
 	int		height;
 	int		coins;
 	char	*coins_lft;
-	t_cpath	cpath;
+	t_chpath	chpath;
 }	t_map;
 
 typedef struct s_win
