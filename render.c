@@ -6,13 +6,13 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 13:00:39 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/04/06 13:12:45 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/04/10 12:45:35 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	ft_render_specials(t_win *game, char *map_pos, int x, int y)
+static void	ft_render_specials(t_win *game, char *map_pos, int x, int y)
 {
 	if (*map_pos == 'C')
 		mlx_put_image_to_window(game->connection, game->window,
@@ -31,7 +31,7 @@ void	ft_render_specials(t_win *game, char *map_pos, int x, int y)
 	}
 }
 
-void	ft_render_map(t_win *game)
+static void	ft_render_map(t_win *game)
 {
 	int		y;
 	int		x;

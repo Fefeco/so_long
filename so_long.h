@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 14:02:33 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/04/10 11:50:11 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/04/10 12:37:13 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,6 @@ int		ft_load_map(t_map *game);
 int		ft_check_extension(const char *filename, const char *ext);
 int		ft_render(t_win *game);
 int		ft_find_player(t_map *map);
-int		ft_check_path_available(t_map *map, int pos);
+//int		ft_check_path_available(t_map *map, int pos);
 
 #endif

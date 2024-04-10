@@ -6,13 +6,13 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 11:29:34 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/04/10 11:49:00 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/04/10 12:46:49 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	ft_check_map_size(t_map *map)
+static int	ft_check_map_size(t_map *map)
 {
 	char	*line;
 
@@ -41,7 +41,7 @@ int	ft_check_map_size(t_map *map)
 	return (0);
 }
 
-int	ft_validate_sprites(t_map *map)
+static int	ft_validate_sprites(t_map *map)
 {
 	int		i;
 	int		exit;
@@ -69,7 +69,7 @@ int	ft_validate_sprites(t_map *map)
 	return (0);
 }
 
-int	ft_check_walls(t_map *map)
+static int	ft_check_walls(t_map *map)
 {
 	int	i;
 	int	x;
@@ -93,6 +93,28 @@ int	ft_check_walls(t_map *map)
 		++y;
 	}
 	return (0);
+}
+
+static int	ft_check_path_available(t_map *map, int pos)
+{
+	if (map->chpath.exit == 1 && map->chpath.coins == map->coins)
+		map->chpath.valid = 1;
+	if (map->base_map[pos] == '1' || map->chpath.valid == 1)
+		return (0);
+	map->chpath.visited[pos] = 'V';
+	if (map->base_map[pos] == 'C')
+		++map->chpath.coins;
+	if (map->base_map[pos] == 'E')
+		++map->chpath.exit;
+	if (map->chpath.visited[pos + map->x] != 'V')
+		ft_check_path_available(map, pos + map->x);
+	if (map->chpath.visited[pos + 1] != 'V')
+		ft_check_path_available(map, pos + 1);
+	if (map->chpath.visited[pos - 1] != 'V')
+		ft_check_path_available(map, pos - 1);
+	if (map->chpath.visited[pos - map->x] != 'V')
+		ft_check_path_available(map, pos - map->x);
+	return (map->chpath.valid);
 }
 
 int	ft_load_map(t_map *map)

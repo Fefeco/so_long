@@ -6,13 +6,13 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 09:52:26 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/04/08 09:46:48 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/04/10 12:43:55 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	key_press(int key, t_win *game)
+static int	key_press(int key, t_win *game)
 {
 	if (key == ESC)
 		exit_program(game);
@@ -23,7 +23,7 @@ int	key_press(int key, t_win *game)
 	return (0);
 }
 
-int	ft_check_error(int argc)
+static int	ft_check_error(int argc)
 {
 	if (argc == 1)
 		perror(ERROR_NO_MAP);

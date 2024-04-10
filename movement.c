@@ -6,13 +6,13 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 19:11:28 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/04/08 10:00:31 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/04/10 12:46:19 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	ft_collect_coin(t_win *game, int player_pos)
+static void	ft_collect_coin(t_win *game, int player_pos)
 {
 	game->map->base_map[player_pos] = '0';
 	--game->map->coins;
@@ -20,7 +20,7 @@ void	ft_collect_coin(t_win *game, int player_pos)
 		game->bg.exit = game->bg.exit_open;
 }
 
-int	ft_validate_movement(t_win *game)
+static int	ft_validate_movement(t_win *game)
 {
 	int		player_pos;
 	int		y;
@@ -46,7 +46,7 @@ int	ft_validate_movement(t_win *game)
 	return (0);
 }
 
-void	ft_movement_aux(t_win *game, int key)
+static void	ft_movement_aux(t_win *game, int key)
 {
 	if (key == RIGHT)
 	{
