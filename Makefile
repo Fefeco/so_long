@@ -6,7 +6,7 @@
 #    By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/26 09:57:02 by fcarranz          #+#    #+#              #
-#    Updated: 2024/04/10 13:59:13 by fcarranz         ###   ########.fr        #
+#    Updated: 2024/04/10 20:40:21 by fcarranz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,12 +37,12 @@ SRC=so_long.c \
 	render.c \
 	textures.c \
 	movement.c
-SRC_BONUS=so_long.c \
+SRC_BONUS=so_long_bonus.c \
 	so_long_utils.c \
 	map.c \
 	render_bonus.c \
-	textures.c \
-	movement.c
+	textures_bonus.c \
+	movement_bonus.c
 OBJS=$(SRC:%.c=%.o)
 OBJS_BONUS=$(SRC_BONUS:%.c=%.o)
 
@@ -55,7 +55,7 @@ $(NAME): $(OBJS) Makefile so_long.h
 	make -C $(MLX_PATH)
 	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(MLX_FLAGS) $(INC) -o $@
 
-bonus: $(OBJS_BONUS) Makefile so_long
+bonus: $(OBJS_BONUS) Makefile so_long_bonus.h
 	make -C $(LIBFT_PATH) 
 	make -C $(MLX_PATH)
 	$(CC) $(CFLAGS) $(OBJS_BONUS) $(LIBFT) $(MLX_FLAGS) $(INC) -o $(NAME)

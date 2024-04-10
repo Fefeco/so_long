@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 13:00:39 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/04/10 12:45:35 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/04/10 21:20:05 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ int	ft_render(t_win *game)
 	mov = ft_strjoin(ft_strdup("MOVEMENTS: "), ft_itoa(game->movements));
 	mlx_clear_window(game->connection, game->window);
 	ft_render_map(game);
+	ft_printf("RENDERAZO\n");
 	mlx_put_image_to_window(game->connection, game->window,
 		game->player.render, game->player.pos_x, game->player.pos_y);
 	mlx_string_put(game->connection, game->window, game->map->width * 0.4,
