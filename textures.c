@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 12:05:36 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/04/10 12:37:50 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/04/10 12:50:09 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,3 @@ int	ft_load_textures(t_win *game)
 		return (perror(ERROR_LOAD_TEX), 1);
 	return (0);
 }
-

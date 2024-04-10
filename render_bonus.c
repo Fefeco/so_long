@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 13:00:39 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/04/10 13:03:07 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/04/10 12:45:35 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,10 @@ int	ft_render(t_win *game)
 	ft_render_map(game);
 	mlx_put_image_to_window(game->connection, game->window,
 		game->player.render, game->player.pos_x, game->player.pos_y);
-	ft_printf("----\n%s\n%s\n", coins, mov);
+	mlx_string_put(game->connection, game->window, game->map->width * 0.4,
+		game->map->height * 0.9, 0xFF99FF, coins);
+	mlx_string_put(game->connection, game->window, game->map->width * 0.4,
+		game->map->height * 0.85, 0xFF99FF, mov);
 	free (coins);
 	free (mov);
 	return (0);

@@ -6,7 +6,7 @@
 #    By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/26 09:57:02 by fcarranz          #+#    #+#              #
-#    Updated: 2024/04/10 12:05:25 by fcarranz         ###   ########.fr        #
+#    Updated: 2024/04/10 13:59:13 by fcarranz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,14 @@ SRC=so_long.c \
 	render.c \
 	textures.c \
 	movement.c
+SRC_BONUS=so_long.c \
+	so_long_utils.c \
+	map.c \
+	render_bonus.c \
+	textures.c \
+	movement.c
 OBJS=$(SRC:%.c=%.o)
+OBJS_BONUS=$(SRC_BONUS:%.c=%.o)
 
 .PHONY: all clean fclean re
 
@@ -47,6 +54,11 @@ $(NAME): $(OBJS) Makefile so_long.h
 	make -C $(LIBFT_PATH) 
 	make -C $(MLX_PATH)
 	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(MLX_FLAGS) $(INC) -o $@
+
+bonus: $(OBJS_BONUS) Makefile so_long
+	make -C $(LIBFT_PATH) 
+	make -C $(MLX_PATH)
+	$(CC) $(CFLAGS) $(OBJS_BONUS) $(LIBFT) $(MLX_FLAGS) $(INC) -o $(NAME)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -Imlx -I libft/inc -c $< -o $@
