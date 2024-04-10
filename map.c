@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 11:29:34 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/04/10 10:39:34 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/04/10 11:49:00 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,8 +109,12 @@ int	ft_load_map(t_map *map)
 	map->chpath.coins = 0;
 	map->chpath.exit = 0;
 	map->chpath.visited = (int *)ft_calloc(sizeof(int), (map->x * map->y));
-
 	if (!ft_check_path_available(map, pos))
-		return (free(map->base_map), free(map->chpath.visited), 1);
+	{
+		free(map->base_map);
+		free(map->chpath.visited);
+		perror(ERROR_NO_PATH);
+		return (1);
+	}
 	return (0);
 }
