@@ -6,7 +6,7 @@
 #    By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/26 09:57:02 by fcarranz          #+#    #+#              #
-#    Updated: 2024/04/10 20:40:21 by fcarranz         ###   ########.fr        #
+#    Updated: 2024/04/11 13:34:19 by fcarranz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ SRC=so_long.c \
 	textures.c \
 	movement.c
 SRC_BONUS=so_long_bonus.c \
-	so_long_utils.c \
+	so_long_utils_bonus.c \
 	map.c \
 	render_bonus.c \
 	textures_bonus.c \
@@ -66,7 +66,7 @@ bonus: $(OBJS_BONUS) Makefile so_long_bonus.h
 clean:
 	make clean -C $(LIBFT_PATH)
 	make clean -C $(MLX_PATH)
-	rm -f $(OBJS)
+	rm -f $(OBJS) $(OBJS_BONUS)
 
 fclean: clean
 	make fclean -C $(LIBFT_PATH)

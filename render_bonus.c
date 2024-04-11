@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.c                                           :+:      :+:    :+:   */
+/*   render_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 13:00:39 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/04/10 21:20:05 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/04/11 10:58:12 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 static void	ft_render_specials(t_win *game, char *map_pos, int x, int y)
 {
@@ -69,7 +69,8 @@ int	ft_render(t_win *game)
 	ft_render_map(game);
 	ft_printf("RENDERAZO\n");
 	mlx_put_image_to_window(game->connection, game->window,
-		game->player.render, game->player.pos_x, game->player.pos_y);
+		ft_switch_img(game->player.render), game->player.pos_x, game->player.pos_y);
+	ft_printf("RENDERAZO\n");
 	mlx_string_put(game->connection, game->window, game->map->width * 0.4,
 		game->map->height * 0.9, 0xFF99FF, coins);
 	mlx_string_put(game->connection, game->window, game->map->width * 0.4,

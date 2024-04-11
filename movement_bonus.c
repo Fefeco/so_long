@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 19:11:28 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/04/10 20:38:51 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/04/11 13:21:26 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,14 +64,15 @@ static void	ft_movement_aux(t_win *game, int key)
 	if (key == RIGHT)
 	{
 		game->player.pos_x += TILE_W;
-		game->player.render = ft_switch_img(game->player.right);
+		game->player.render = game->player.right;
 		if (ft_validate_movement(game))
 			game->player.pos_x -= TILE_W;
 	}
 	else if (key == LEFT)
 	{
 		game->player.pos_x -= TILE_W;
-		game->player.render = ft_switch_img(game->player.left);
+		ft_printf("giro izquierda\n");
+		game->player.render = game->player.left;
 		if (ft_validate_movement(game))
 			game->player.pos_x += TILE_W;
 	}
@@ -82,14 +83,14 @@ void	ft_movement(t_win *game, int key)
 	if (key == UP)
 	{
 		game->player.pos_y -= TILE_H;
-		game->player.render = ft_switch_img(game->player.up);
+		game->player.render = game->player.up;
 		if (ft_validate_movement(game))
 			game->player.pos_y += TILE_H;
 	}
 	else if (key == DOWN)
 	{
 		game->player.pos_y += TILE_H;
-		game->player.render = ft_switch_img(game->player.down);
+		game->player.render = game->player.down;
 		if (ft_validate_movement(game))
 			game->player.pos_y -= TILE_H;
 	}
