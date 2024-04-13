@@ -6,30 +6,24 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 19:11:28 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/04/13 10:23:22 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/04/13 12:57:13 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
 
-void	*ft_switch_img(void **img)
+static void	ft_touched_enemy(t_win *game)
 {
-	static int	array_pos;
-	static void	*tmp;
-
-	if (!array_pos || !img[array_pos] || img != tmp)
-	{
-		tmp = img;
-		array_pos = 0;
-	}
-	return (img[array_pos++]);
+	perror(ERROR_TOUCHED_ENEMY);
+	free (game->map->base_map);
+	exit_program(game);
 }
 
 static void	ft_collect_coin(t_win *game, int player_pos)
 {
 	game->map->base_map[player_pos] = '0';
-	--game->map->coins;
-	if (game->map->coins == 0)
+	--game->map->spr.coins;
+	if (game->map->spr.coins == 0)
 		game->bg.exit = game->bg.exit_open;
 }
 
@@ -48,9 +42,11 @@ static int	ft_validate_movement(t_win *game)
 		return (ft_printf("%s\n", ERROR_MOV), 1);
 	else if (map_pos == 'C')
 		ft_collect_coin(game, player_pos);
+	else if (map_pos == 'N')
+		ft_touched_enemy(game);
 	else if (map_pos == 'E')
 	{
-		if (game->map->coins != 0)
+		if (game->map->spr.coins != 0)
 			return (ft_printf("%s\n", ERROR_EXIT), 1);
 		ft_printf("%s\n", WIN);
 		exit_program(game);

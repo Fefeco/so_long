@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 14:02:33 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/04/10 12:37:13 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/04/13 11:22:04 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ typedef struct s_img
 	int		pos_y;
 }	t_img;
 
-typedef struct s_back
+typedef struct s_background
 {
 	void	*wall;
 	void	*coin;
@@ -81,19 +81,19 @@ typedef struct s_back
 	void	*exit_open;
 	int		width;
 	int		height;
-}	t_back;
+}	t_bg;
 
 typedef struct s_map
 {
-	char	*filename;
-	char	*base_map;
-	int		fd;
-	int		x;
-	int		y;
-	int		width;
-	int		height;
-	int		coins;
-	char	*coins_lft;
+	char		*filename;
+	char		*base_map;
+	int			fd;
+	int			x;
+	int			y;
+	int			width;
+	int			height;
+	int			coins;
+	char		*coins_lft;
 	t_chpath	chpath;
 }	t_map;
 
@@ -106,7 +106,7 @@ typedef struct s_win
 	int		coins;
 	int		movements;
 	t_img	player;
-	t_back	bg;
+	t_bg	bg;
 	t_map	*map;
 }	t_win;
 
@@ -118,6 +118,5 @@ int		ft_load_map(t_map *game);
 int		ft_check_extension(const char *filename, const char *ext);
 int		ft_render(t_win *game);
 int		ft_find_player(t_map *map);
-//int		ft_check_path_available(t_map *map, int pos);
 
 #endif

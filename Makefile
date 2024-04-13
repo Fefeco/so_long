@@ -6,7 +6,7 @@
 #    By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/26 09:57:02 by fcarranz          #+#    #+#              #
-#    Updated: 2024/04/11 13:34:19 by fcarranz         ###   ########.fr        #
+#    Updated: 2024/04/13 12:11:57 by fcarranz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,10 +38,12 @@ SRC=so_long.c \
 	textures.c \
 	movement.c
 SRC_BONUS=so_long_bonus.c \
+	so_long_utils.c \
 	so_long_utils_bonus.c \
-	map.c \
+	map_bonus.c \
 	render_bonus.c \
 	textures_bonus.c \
+	textures_enemy_bonus.c \
 	movement_bonus.c
 OBJS=$(SRC:%.c=%.o)
 OBJS_BONUS=$(SRC_BONUS:%.c=%.o)

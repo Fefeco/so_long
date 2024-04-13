@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 13:00:39 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/04/13 10:15:07 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/04/13 12:39:24 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,9 @@ static void	ft_render_specials(t_win *game, char *map_pos, int x, int y)
 		game->player.pos_y = y * TILE_H;
 		*map_pos = '0';
 	}
+	if (*map_pos == 'N')
+		mlx_put_image_to_window(game->connection, game->window,
+			ft_switch_img_2(game->enemy.render), x * TILE_W, y * TILE_H);
 }
 
 static void	ft_render_map(t_win *game)
@@ -49,7 +52,7 @@ static void	ft_render_map(t_win *game)
 			if (ft_strchr("0PC", *map_pos))
 				mlx_put_image_to_window(game->connection, game->window,
 					game->bg.floor, x * TILE_W, y * TILE_H);
-			if (ft_strchr("C1EP", *map_pos))
+			if (ft_strchr("C1EPN", *map_pos))
 				ft_render_specials(game, map_pos, x, y);
 			++x;
 			++i;
@@ -63,7 +66,8 @@ int	ft_render(t_win *game)
 	char	*coins;
 	char	*mov;
 
-	coins = ft_strjoin(ft_strdup("COINS LEFT: "), ft_itoa(game->map->coins));
+	coins = ft_strjoin(ft_strdup("COINS LEFT: "),
+			ft_itoa(game->map->spr.coins));
 	mov = ft_strjoin(ft_strdup("MOVEMENTS: "), ft_itoa(game->movements));
 	mlx_clear_window(game->connection, game->window);
 	ft_render_map(game);

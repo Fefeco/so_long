@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   so_long_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 14:02:33 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/04/11 10:56:03 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/04/13 13:01:24 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#ifndef SO_LONG_BONUS_H
+# define SO_LONG_BONUS_H
 
 # include "mlx.h"
 # include "libft.h"
@@ -44,14 +44,23 @@
 # define ERROR_MAP_SIZE "Error\nEl mapa no es rectangular"
 # define ERROR_MAP "Error\nMapa"
 # define ERROR_WALLS "Error\nMapa debe estar rodeado de paredes"
-# define ERROR_STRIPES "ERROR\nCantidad player, coins o exit erronea"
+# define ERROR_STRIPES "ERROR\nCantidad player, coins, enemy o exit erronea"
 # define ERROR_INVALID_CHAR "ERROR\nCaracter invalido en mapa"
 # define ERROR_NO_PATH "ERROR\nNo hay camino posible"
 # define ERROR_LOAD_TEX "ERROR\nCargando texturas"
 # define ERROR_CONNECTION "ERROR\nFallo la conexion con el servidor X"
 # define ERROR_MOV "ERROR\nMovimiento no permitido"
 # define ERROR_EXIT "ERROR\nAun quedan coins por recoger!"
+# define ERROR_TOUCHED_ENEMY "ERROR\nTocaste un enemigo. JUEGO TERMINADO!"
 # define WIN "HAS GANADO!!"
+
+typedef struct s_total_sprites
+{
+	int	exit;
+	int	player;
+	int	coins;
+	int	enemys;
+}	t_spr;
 
 typedef struct s_check_path
 {
@@ -61,7 +70,7 @@ typedef struct s_check_path
 	int	*visited;
 }	t_chpath;
 
-typedef struct s_img
+typedef struct s_imgage
 {
 	void	**up;
 	void	**down;
@@ -72,7 +81,7 @@ typedef struct s_img
 	int		pos_y;
 }	t_img;
 
-typedef struct s_back
+typedef struct s_background
 {
 	void	*wall;
 	void	*coin;
@@ -81,23 +90,23 @@ typedef struct s_back
 	void	*exit_open;
 	int		width;
 	int		height;
-}	t_back;
+}	t_bg;
 
 typedef struct s_map
 {
-	char	*filename;
-	char	*base_map;
-	int		fd;
-	int		x;
-	int		y;
-	int		width;
-	int		height;
-	int		coins;
-	char	*coins_lft;
+	char		*filename;
+	char		*base_map;
+	int			fd;
+	int			x;
+	int			y;
+	int			width;
+	int			height;
+	char		*coins_lft;
 	t_chpath	chpath;
+	t_spr		spr;
 }	t_map;
 
-typedef struct s_win
+typedef struct s_window
 {
 	void	*connection;
 	void	*window;
@@ -106,7 +115,8 @@ typedef struct s_win
 	int		coins;
 	int		movements;
 	t_img	player;
-	t_back	bg;
+	t_img	enemy;
+	t_bg	bg;
 	t_map	*map;
 }	t_win;
 
@@ -119,5 +129,7 @@ int		ft_check_extension(const char *filename, const char *ext);
 int		ft_render(t_win *game);
 int		ft_find_player(t_map *map);
 void	*ft_switch_img(void **img);
+void	**ft_load_enemy(t_win *game);
+void	*ft_switch_img_2(void **img);
 
 #endif

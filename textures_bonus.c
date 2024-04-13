@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 12:05:36 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/04/13 10:22:47 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/04/13 12:58:52 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,7 @@ int	ft_load_textures(t_win *game)
 	game->player.left = ft_load_player_left(game);
 	game->player.up = ft_load_player_up(game);
 	game->player.down = ft_load_player_down(game);
+	game->enemy.render = ft_load_enemy(game);
 	if (!game->bg.floor || !game->bg.wall || !game->bg.coin
 		|| !game->bg.exit || !game->player.right || !game->player.up
 		|| !game->player.left || !game->player.down)
