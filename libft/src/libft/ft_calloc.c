@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 12:13:54 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/04/01 12:20:23 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/04/13 13:52:32 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	*ft_calloc(size_t count, size_t size)
 	p = malloc(total_size);
 	if (!p)
 		return (p);
-	while(total_size > 0)
+	while (total_size > 0)
 		p[--total_size] = '\0';
 	return ((void *)p);
 }
