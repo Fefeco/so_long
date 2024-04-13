@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 11:29:34 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/04/13 13:01:07 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/04/13 13:04:50 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static int	ft_validate_sprites(t_map *map)
 			++map->spr.enemys;
 	}
 	if (map->spr.exit != 1 || map->spr.player != 1 || map->spr.coins < 1
-			|| map->spr.enemys < 1)
+		|| map->spr.enemys < 1)
 		return (perror(ERROR_STRIPES), 1);
 	return (0);
 }
