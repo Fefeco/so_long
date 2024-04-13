@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 19:11:28 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/04/11 13:21:26 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/04/13 10:23:22 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ static void	ft_movement_aux(t_win *game, int key)
 	else if (key == LEFT)
 	{
 		game->player.pos_x -= TILE_W;
-		ft_printf("giro izquierda\n");
 		game->player.render = game->player.left;
 		if (ft_validate_movement(game))
 			game->player.pos_x += TILE_W;

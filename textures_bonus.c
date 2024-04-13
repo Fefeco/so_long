@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 12:05:36 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/04/11 13:23:43 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/04/13 10:22:47 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ static void	**ft_load_player_right(t_win *game)
 	if (!tmp)
 		return (NULL);
 	tmp[0] = mlx_xpm_file_to_image(game->connection,
-		"textures/player_right_0.xpm", &(game->width), &(game->height));
+			"textures/player_right_0.xpm", &(game->width), &(game->height));
 	tmp[1] = mlx_xpm_file_to_image(game->connection,
-		"textures/player_right_1.xpm", &(game->width), &(game->height));
+			"textures/player_right_1.xpm", &(game->width), &(game->height));
 	tmp[2] = mlx_xpm_file_to_image(game->connection,
-		"textures/player_right_2.xpm", &(game->width), &(game->height));
+			"textures/player_right_2.xpm", &(game->width), &(game->height));
 	tmp[3] = mlx_xpm_file_to_image(game->connection,
-		"textures/player_right_3.xpm", &(game->width), &(game->height));
+			"textures/player_right_3.xpm", &(game->width), &(game->height));
 	tmp[4] = NULL;
 	return (tmp);
 }
@@ -38,15 +38,14 @@ static void	**ft_load_player_left(t_win *game)
 	tmp = malloc(sizeof(void *) * 5);
 	if (!tmp)
 		return (NULL);
-	tmp = malloc(sizeof(void *) * 5);
 	tmp[0] = mlx_xpm_file_to_image(game->connection,
-		"textures/player_left_0.xpm", &(game->width), &(game->height));
+			"textures/player_left_0.xpm", &(game->width), &(game->height));
 	tmp[1] = mlx_xpm_file_to_image(game->connection,
-		"textures/player_left_1.xpm", &(game->width), &(game->height));
+			"textures/player_left_1.xpm", &(game->width), &(game->height));
 	tmp[2] = mlx_xpm_file_to_image(game->connection,
-		"textures/player_left_2.xpm", &(game->width), &(game->height));
+			"textures/player_left_2.xpm", &(game->width), &(game->height));
 	tmp[3] = mlx_xpm_file_to_image(game->connection,
-		"textures/player_left_3.xpm", &(game->width), &(game->height));
+			"textures/player_left_3.xpm", &(game->width), &(game->height));
 	tmp[4] = NULL;
 	return (tmp);
 }
@@ -58,15 +57,14 @@ static void	**ft_load_player_up(t_win *game)
 	tmp = malloc(sizeof(void *) * 5);
 	if (!tmp)
 		return (NULL);
-	tmp = malloc(sizeof(void *) * 5);
 	tmp[0] = mlx_xpm_file_to_image(game->connection,
-		"textures/player_up_0.xpm", &(game->width), &(game->height));
+			"textures/player_up_0.xpm", &(game->width), &(game->height));
 	tmp[1] = mlx_xpm_file_to_image(game->connection,
-		"textures/player_up_1.xpm", &(game->width), &(game->height));
+			"textures/player_up_1.xpm", &(game->width), &(game->height));
 	tmp[2] = mlx_xpm_file_to_image(game->connection,
-		"textures/player_up_2.xpm", &(game->width), &(game->height));
+			"textures/player_up_2.xpm", &(game->width), &(game->height));
 	tmp[3] = mlx_xpm_file_to_image(game->connection,
-		"textures/player_up_3.xpm", &(game->width), &(game->height));
+			"textures/player_up_3.xpm", &(game->width), &(game->height));
 	tmp[4] = NULL;
 	return (tmp);
 }
@@ -78,15 +76,14 @@ static void	**ft_load_player_down(t_win *game)
 	tmp = malloc(sizeof(void *) * 5);
 	if (!tmp)
 		return (NULL);
-	tmp = malloc(sizeof(void *) * 5);
 	tmp[0] = mlx_xpm_file_to_image(game->connection,
-		"textures/player_down_0.xpm", &(game->width), &(game->height));
+			"textures/player_down_0.xpm", &(game->width), &(game->height));
 	tmp[1] = mlx_xpm_file_to_image(game->connection,
-		"textures/player_down_1.xpm", &(game->width), &(game->height));
+			"textures/player_down_1.xpm", &(game->width), &(game->height));
 	tmp[2] = mlx_xpm_file_to_image(game->connection,
-		"textures/player_down_2.xpm", &(game->width), &(game->height));
+			"textures/player_down_2.xpm", &(game->width), &(game->height));
 	tmp[3] = mlx_xpm_file_to_image(game->connection,
-		"textures/player_down_3.xpm", &(game->width), &(game->height));
+			"textures/player_down_3.xpm", &(game->width), &(game->height));
 	tmp[4] = NULL;
 	return (tmp);
 }

@@ -6,31 +6,14 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 14:01:32 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/04/11 13:50:04 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/04/13 10:25:08 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
 
-void	ft_free_array(void **array, int len)
-{
-	while (len >= 0)
-		free(array[len--]);
-}
-
 int	exit_program(t_win *game)
 {
-	/*if(game->player.right)
-	{
-		ft_free_array(game->player.right, 4);
-		free (game->player.right);
-	}*/
-	if(game->player.up)
-		free (game->player.up);
-	/*if(game->player.down)
-		ft_free_array(game->player.down, 4);
-	if(game->player.left)
-		ft_free_array(game->player.left, 4);*/
 	if (game)
 		mlx_destroy_window(game->connection, game->window);
 	exit(EXIT_FAILURE);
