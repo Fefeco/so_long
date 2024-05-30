@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 09:52:26 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/04/10 12:43:55 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/05/30 16:11:01 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	main(int argc, char *argv[])
 	map.base_map = (char *)malloc(sizeof(char) * 1);
 	map.base_map[0] = '\0';
 	if (ft_load_map(&map))
-		return (1);
+		return (free(map.base_map), 1);
 	game = ft_create_window(map.width, map.height, "My Juego");
 	if (!game.connection || !game.window)
 		return (1);
