@@ -6,7 +6,7 @@
 /*   By: fcarranz <fcarranz@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 11:29:34 by fcarranz          #+#    #+#             */
-/*   Updated: 2024/04/10 12:46:49 by fcarranz         ###   ########.fr       */
+/*   Updated: 2024/05/30 19:31:56 by fcarranz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static int	ft_check_map_size(t_map *map)
 			return (perror(ERROR_MAP_SIZE), close(map->fd), free(line), 1);
 	}
 	close (map->fd);
-	if (map->x <= map->y)
+	if (map->x == map->y)
 		return (perror(ERROR_MAP_SIZE), 1);
 	map->width = map->x * TILE_W;
 	map->height = map->y * TILE_H;
@@ -105,15 +105,20 @@ static int	ft_check_path_available(t_map *map, int pos)
 	if (map->base_map[pos] == 'C')
 		++map->chpath.coins;
 	if (map->base_map[pos] == 'E')
+	{
 		++map->chpath.exit;
-	if (map->chpath.visited[pos + map->x] != 'V')
-		ft_check_path_available(map, pos + map->x);
-	if (map->chpath.visited[pos + 1] != 'V')
-		ft_check_path_available(map, pos + 1);
+		return (0);
+	}
 	if (map->chpath.visited[pos - 1] != 'V')
 		ft_check_path_available(map, pos - 1);
+	if (map->chpath.visited[pos + 1] != 'V')
+		ft_check_path_available(map, pos + 1);
+	if (map->chpath.visited[pos + map->x] != 'V')
+		ft_check_path_available(map, pos + map->x);
 	if (map->chpath.visited[pos - map->x] != 'V')
 		ft_check_path_available(map, pos - map->x);
+	if (map->chpath.exit == 1 && map->chpath.coins == map->coins)
+		map->chpath.valid = 1;
 	return (map->chpath.valid);
 }
 
